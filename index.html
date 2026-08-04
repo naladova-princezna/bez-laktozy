@@ -139,6 +139,8 @@
   .hero svg{width:56px;height:56px;color:var(--accent);opacity:.6}
   .dname{font-family:var(--font-round);font-size:27px;font-weight:800;letter-spacing:-.02em;margin:18px 0 0}
   .ddesc{color:var(--text-2);font-size:16px;line-height:1.5;margin:8px 0 0;white-space:pre-wrap}
+  .dbrand{color:var(--text-2);font-size:15px;font-weight:600;margin-top:3px}
+  .cb-brand{color:var(--text);font-weight:600}
   .sectionhead{display:flex;align-items:center;justify-content:space-between;margin:30px 0 10px}
   .sectionhead h3{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-2);margin:0}
   .addlink{color:var(--accent-ink);font-weight:650;font-size:15px;display:flex;align-items:center;gap:4px;padding:4px}
@@ -288,7 +290,11 @@
     <input type="file" id="photoInput" accept="image/*" class="hidden">
     <div class="field">
       <label for="nameInput">Název</label>
-      <input id="nameInput" type="text" placeholder="např. Rostlinný jogurt Alpro" enterkeyhint="next">
+      <input id="nameInput" type="text" placeholder="např. Rostlinný jogurt" enterkeyhint="next">
+    </div>
+    <div class="field">
+      <label for="brandInput">Výrobce</label>
+      <input id="brandInput" type="text" placeholder="např. Alpro" enterkeyhint="next">
     </div>
     <div class="field">
       <label for="weightInput">Množství balení <span style="text-transform:none;font-weight:500;color:var(--text-3)">(pro cenu za 100 g / 100 ml)</span></label>
@@ -490,7 +496,7 @@
   var scrim=$("scrim");
   var productSheet=$("productSheet"), priceSheet=$("priceSheet"), settingsSheet=$("settingsSheet");
   var photoPick=$("photoPick"), photoInput=$("photoInput");
-  var nameInput=$("nameInput"), weightInput=$("weightInput"), descInput=$("descInput"), unitSeg=$("unitSeg"), lactoseInput=$("lactoseInput");
+  var nameInput=$("nameInput"), weightInput=$("weightInput"), descInput=$("descInput"), unitSeg=$("unitSeg"), lactoseInput=$("lactoseInput"), brandInput=$("brandInput");
   var storeInput=$("storeInput"), priceInput=$("priceInput"), priceNote=$("priceNote"), priceDelete=$("priceDelete");
   var toastEl=$("toast"), bannerEl=$("banner");
 
@@ -509,6 +515,7 @@
     if(q){
       items = items.filter(function(p){
         if(p.name.toLowerCase().indexOf(q)>=0) return true;
+        if((p.brand||"").toLowerCase().indexOf(q)>=0) return true;
         if((p.desc||"").toLowerCase().indexOf(q)>=0) return true;
         return (p.prices||[]).some(function(pr){ return (pr.store||"").toLowerCase().indexOf(q)>=0; });
       });
@@ -532,13 +539,17 @@
       var lsc = scoreFor(p.lactose);
       var scDot = lsc ? '<span class="score-dot" style="background:'+SCORES[lsc].color+'">'+lsc+'</span>' : '';
       thumb = '<div class="thumbwrap">'+thumb+scDot+'</div>';
+      var subParts=[];
+      if(p.brand) subParts.push('<span class="cb-brand">'+esc(p.brand)+'</span>');
+      if(p.desc) subParts.push(esc(p.desc));
+      var subHtml = subParts.length ? '<div class="carddesc">'+subParts.join(' · ')+'</div>' : '<div class="carddesc" style="color:var(--text-3)">bez popisu</div>';
       var pu = b ? per100Str(b.price, p.weight||null, p.unit||"g") : "";
       var price = b
         ? '<div class="amt">'+money.format(b.price)+'</div><div class="where">'+esc(b.store)+'</div>'+(pu?'<div class="per100">'+pu+'</div>':'')
         : '<div class="none">— bez ceny</div>';
       html+='<button class="card" data-id="'+p.id+'">'+thumb+
         '<div class="cardmain"><div class="cardname">'+esc(p.name)+'</div>'+
-        (p.desc?'<div class="carddesc">'+esc(p.desc)+'</div>':'<div class="carddesc" style="color:var(--text-3)">bez popisu</div>')+
+        subHtml+
         '</div><div class="cardprice">'+price+'</div></button>';
     });
     html+='</div>';
@@ -584,6 +595,7 @@
 
     detailBody.innerHTML = hero+
       '<div class="dname">'+esc(p.name)+'</div>'+
+      (p.brand?'<div class="dbrand">'+esc(p.brand)+'</div>':'')+
       (w?'<div class="dweight">'+fmtAmount(w,unit)+'</div>':'')+
       scoreCard+
       (p.desc?'<div class="ddesc">'+esc(p.desc)+'</div>':'')+
@@ -624,6 +636,7 @@
     editingProduct = product;
     $("productSheetTitle").textContent = product ? "Upravit produkt" : "Nový produkt";
     nameInput.value = product ? product.name : "";
+    brandInput.value = product ? (product.brand||"") : "";
     var u = (product && product.unit) ? product.unit : "g";
     setUnit(u);
     weightInput.value = (product && product.weight)
@@ -640,16 +653,17 @@
     var name = nameInput.value.trim();
     if(!name){ toast("Zadej název produktu"); nameInput.focus(); return; }
     var desc = descInput.value.trim();
+    var brand = brandInput.value.trim();
     var parsed = parseAmount(weightInput.value, draftUnit);
     var weight = parsed ? parsed.amount : null;
     var unit = parsed ? parsed.unit : draftUnit;
     var lactose = parseLactose(lactoseInput.value);
     try{
       if(editingProduct){
-        editingProduct.name=name; editingProduct.desc=desc; editingProduct.weight=weight; editingProduct.unit=unit; editingProduct.lactose=lactose; editingProduct.image=draftImage||null;
+        editingProduct.name=name; editingProduct.brand=brand; editingProduct.desc=desc; editingProduct.weight=weight; editingProduct.unit=unit; editingProduct.lactose=lactose; editingProduct.image=draftImage||null;
         await storeSet(editingProduct.id, editingProduct);
       } else {
-        var p={ id:uid("p_"), name:name, desc:desc, weight:weight, unit:unit, lactose:lactose, image:draftImage||null, prices:[] };
+        var p={ id:uid("p_"), name:name, brand:brand, desc:desc, weight:weight, unit:unit, lactose:lactose, image:draftImage||null, prices:[] };
         products.push(p); await storeSet(p.id,p);
       }
       closeSheet(productSheet);
