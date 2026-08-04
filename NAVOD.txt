@@ -1,4 +1,4 @@
-BEZ LAKTÓZY — jak z toho udělat ikonu na ploše iPhonu
+LACTOSTOP — jak z toho udělat ikonu na ploše iPhonu
 =====================================================
 
 Tenhle balíček je hotová aplikace. Nemusíš nic programovat.
@@ -29,7 +29,7 @@ KROK 2 — PŘIDAT NA PLOCHU IPHONU
 1. Odkaz z Kroku 1 otevři v prohlížeči SAFARI (ne v Chrome).
 2. Klepni na ikonu Sdílet (čtvereček se šipkou nahoru).
 3. "Přidat na plochu" -> Přidat.
-4. Na ploše se objeví ikona "Bez laktózy". Spouští se na celou obrazovku.
+4. Na ploše se objeví ikona "LactoSTOP". Spouští se na celou obrazovku.
 
 
 KROK 3 — PŘENÉST DATA, KTERÁ UŽ MÁŠ

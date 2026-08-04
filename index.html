@@ -1,17 +1,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Bez laktózy">
-<meta name="theme-color" content="#2E9E6B">
+<meta name="apple-mobile-web-app-title" content="LactoSTOP">
+<meta name="theme-color" content="#08519C">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Bez laktózy</title>
+<title>LactoSTOP</title>
 <style>
   :root{
     --bg:#F5F4EF; --elevated:#FFFFFF; --card:#FFFFFF;
     --text:#1B1F1B; --text-2:#6B726B; --text-3:#A2A8A2;
-    --accent:#2E9E6B; --accent-ink:#1E7A50; --accent-soft:#E4F3EB;
+    --accent:#08519C; --accent-ink:#08427E; --accent-soft:#E3ECF7;
     --danger:#E5484D; --danger-soft:#FCEBEB;
     --border:rgba(0,0,0,.08); --border-strong:rgba(0,0,0,.14);
     --shadow-sm:0 1px 2px rgba(0,0,0,.05);
@@ -26,7 +26,7 @@
     :root{
       --bg:#111311; --elevated:#1D201D; --card:#1D201D;
       --text:#F1F4F1; --text-2:#A7ADA7; --text-3:#71776F;
-      --accent:#45B983; --accent-ink:#7FD3AC; --accent-soft:rgba(69,185,131,.15);
+      --accent:#5A9FDB; --accent-ink:#9CC4EC; --accent-soft:rgba(90,159,219,.16);
       --danger:#FF6B6E; --danger-soft:rgba(255,107,110,.14);
       --border:rgba(255,255,255,.1); --border-strong:rgba(255,255,255,.18);
       --shadow-sm:0 1px 2px rgba(0,0,0,.4);
@@ -109,7 +109,7 @@
     height:56px;padding:0 22px 0 18px;border-radius:30px;
     background:var(--accent);color:#fff;font-weight:700;font-size:16px;
     display:flex;align-items:center;gap:8px;
-    box-shadow:0 8px 22px rgba(46,158,107,.42),0 2px 6px rgba(0,0,0,.15);
+    box-shadow:0 8px 22px rgba(8,81,156,.42),0 2px 6px rgba(0,0,0,.15);
   }
   .fab:active{transform:scale(.96)}
   .fab svg{width:22px;height:22px}
@@ -153,6 +153,14 @@
   .pr-amt{font-family:var(--font-round);font-weight:800;font-size:17px;white-space:nowrap}
   .per100{font-size:12px;color:var(--text-3);margin-top:2px;white-space:nowrap;font-weight:500}
   .dweight{display:inline-block;margin-top:12px;font-size:13px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:5px 12px;border-radius:20px}
+  .scorecard{display:flex;gap:14px;align-items:center;margin:16px 0 0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 15px;box-shadow:var(--shadow-sm)}
+  .score-badge{width:46px;height:46px;border-radius:50%;color:#fff;font-weight:800;font-size:22px;font-family:var(--font-round);display:grid;place-items:center;flex:none}
+  .score-main{min-width:0}
+  .score-title{font-weight:750;font-size:16px}
+  .score-val{font-size:13px;color:var(--text-2);margin-top:1px}
+  .score-desc{font-size:13.5px;color:var(--text-2);margin-top:3px;line-height:1.4}
+  .thumbwrap{position:relative;flex:none}
+  .score-dot{position:absolute;right:-5px;bottom:-5px;width:24px;height:24px;border-radius:50%;color:#fff;font-weight:800;font-size:13px;font-family:var(--font-round);display:grid;place-items:center;border:2.5px solid var(--card)}
   .amountrow{display:flex;gap:10px;align-items:stretch}
   .amountrow input{flex:1;min-width:0}
   .seg{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:3px;gap:3px;flex:none}
@@ -225,7 +233,7 @@
 <div id="listScreen">
   <div class="topbar">
     <div class="titlerow">
-      <h1 class="big">Bez laktózy<small id="counter"></small></h1>
+      <h1 class="big">LactoSTOP<small id="counter"></small></h1>
       <button class="iconbtn" id="settingsBtn" aria-label="Zálohování">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
       </button>
@@ -291,6 +299,10 @@
           <button type="button" data-u="ml">ml</button>
         </div>
       </div>
+    </div>
+    <div class="field">
+      <label for="lactoseInput">Laktóza <span style="text-transform:none;font-weight:500;color:var(--text-3)">(g na 100 g — pro skóre A–E, prázdné = neznámé)</span></label>
+      <input id="lactoseInput" type="text" inputmode="decimal" placeholder="např. 0,5" enterkeyhint="next">
     </div>
     <div class="field">
       <label for="descInput">Stručný popis</label>
@@ -446,6 +458,31 @@
     return money.format(price/amount*100)+" / 100 "+(unit||"g");
   }
 
+  // Skóre laktózy A–E podle g na 100 g
+  var SCORES={
+    A:{label:"Bezpečné",         color:"#2E8B70", desc:"0 g laktózy na 100 g — bez laktózy, bezpečné pro každého."},
+    B:{label:"Většinou bezpečné", color:"#6E9A3F", desc:"do 0,5 g na 100 g — minimum laktózy, obvykle dobře snášené."},
+    C:{label:"Opatrně",          color:"#B8901E", desc:"do 1 g na 100 g — střední obsah laktózy, konzumovat s mírou."},
+    D:{label:"Rizikové",         color:"#CE7A45", desc:"do 1,5 g na 100 g — vysoký obsah, může způsobit potíže."},
+    E:{label:"Vysoké riziko",     color:"#C1495A", desc:"nad 1,5 g na 100 g — velmi vysoký obsah, při intoleranci se vyhnout."}
+  };
+  var SCORE_NONE={label:"Laktóza nezadána", color:"#9AA0A6", desc:"Zadej obsah laktózy na 100 g a skóre se spočítá."};
+  function scoreFor(l){
+    if(l==null || isNaN(l)) return null;
+    if(l<=0) return "A";
+    if(l<=0.5) return "B";
+    if(l<=1) return "C";
+    if(l<=1.5) return "D";
+    return "E";
+  }
+  function parseLactose(s){
+    s=(s||"").trim().toLowerCase().replace(/\s/g,"").replace(/g$/,"").replace(",",".");
+    if(s==="") return null;
+    var v=parseFloat(s);
+    return (isFinite(v)&&v>=0)?Math.round(v*1000)/1000:null;
+  }
+  function fmtLac(l){ return (Math.round(l*1000)/1000).toLocaleString("cs-CZ"); }
+
   /* ---------------- DOM refs ---------------- */
   var $ = function(id){ return document.getElementById(id); };
   var listBody=$("listBody"), counter=$("counter"), searchInput=$("searchInput");
@@ -453,7 +490,7 @@
   var scrim=$("scrim");
   var productSheet=$("productSheet"), priceSheet=$("priceSheet"), settingsSheet=$("settingsSheet");
   var photoPick=$("photoPick"), photoInput=$("photoInput");
-  var nameInput=$("nameInput"), weightInput=$("weightInput"), descInput=$("descInput"), unitSeg=$("unitSeg");
+  var nameInput=$("nameInput"), weightInput=$("weightInput"), descInput=$("descInput"), unitSeg=$("unitSeg"), lactoseInput=$("lactoseInput");
   var storeInput=$("storeInput"), priceInput=$("priceInput"), priceNote=$("priceNote"), priceDelete=$("priceDelete");
   var toastEl=$("toast"), bannerEl=$("banner");
 
@@ -492,6 +529,9 @@
     items.forEach(function(p){
       var b=bestPrice(p);
       var thumb = p.image ? '<img class="thumb" src="'+p.image+'" alt="">' : '<div class="thumb">'+PLACE_ICON+'</div>';
+      var lsc = scoreFor(p.lactose);
+      var scDot = lsc ? '<span class="score-dot" style="background:'+SCORES[lsc].color+'">'+lsc+'</span>' : '';
+      thumb = '<div class="thumbwrap">'+thumb+scDot+'</div>';
       var pu = b ? per100Str(b.price, p.weight||null, p.unit||"g") : "";
       var price = b
         ? '<div class="amt">'+money.format(b.price)+'</div><div class="where">'+esc(b.store)+'</div>'+(pu?'<div class="per100">'+pu+'</div>':'')
@@ -515,6 +555,13 @@
     var hero = p.image ? '<img class="hero" src="'+p.image+'" alt="">' : '<div class="hero">'+PLACE_ICON+'</div>';
     var w = p.weight||null;
     var unit = p.unit||"g";
+    var sc = scoreFor(p.lactose);
+    var scMeta = sc?SCORES[sc]:SCORE_NONE;
+    var scChar = sc?sc:"?";
+    var scVal = (p.lactose!=null) ? ('<div class="score-val">naměřeno: '+fmtLac(p.lactose)+' g laktózy / 100 g</div>') : "";
+    var scoreCard = '<div class="scorecard"><div class="score-badge" style="background:'+scMeta.color+'">'+scChar+'</div>'+
+      '<div class="score-main"><div class="score-title" style="color:'+scMeta.color+'">'+(sc?sc+" · "+scMeta.label:scMeta.label)+'</div>'+scVal+
+      '<div class="score-desc">'+scMeta.desc+'</div></div></div>';
     var prices = (p.prices||[]).slice().sort(function(a,b){return a.price-b.price;});
     var best = prices.length ? prices[0].price : null;
 
@@ -538,6 +585,7 @@
     detailBody.innerHTML = hero+
       '<div class="dname">'+esc(p.name)+'</div>'+
       (w?'<div class="dweight">'+fmtAmount(w,unit)+'</div>':'')+
+      scoreCard+
       (p.desc?'<div class="ddesc">'+esc(p.desc)+'</div>':'')+
       '<div class="sectionhead"><h3>Ceny v obchodech</h3>'+
         '<button class="addlink" id="addPriceBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Přidat</button></div>'+
@@ -581,6 +629,7 @@
     weightInput.value = (product && product.weight)
       ? (Math.round(product.weight*10)/10).toLocaleString("cs-CZ")
       : "";
+    lactoseInput.value = (product && product.lactose!=null) ? fmtLac(product.lactose) : "";
     descInput.value = product ? (product.desc||"") : "";
     draftImage = product ? (product.image||null) : null;
     paintPhoto();
@@ -594,12 +643,13 @@
     var parsed = parseAmount(weightInput.value, draftUnit);
     var weight = parsed ? parsed.amount : null;
     var unit = parsed ? parsed.unit : draftUnit;
+    var lactose = parseLactose(lactoseInput.value);
     try{
       if(editingProduct){
-        editingProduct.name=name; editingProduct.desc=desc; editingProduct.weight=weight; editingProduct.unit=unit; editingProduct.image=draftImage||null;
+        editingProduct.name=name; editingProduct.desc=desc; editingProduct.weight=weight; editingProduct.unit=unit; editingProduct.lactose=lactose; editingProduct.image=draftImage||null;
         await storeSet(editingProduct.id, editingProduct);
       } else {
-        var p={ id:uid("p_"), name:name, desc:desc, weight:weight, unit:unit, image:draftImage||null, prices:[] };
+        var p={ id:uid("p_"), name:name, desc:desc, weight:weight, unit:unit, lactose:lactose, image:draftImage||null, prices:[] };
         products.push(p); await storeSet(p.id,p);
       }
       closeSheet(productSheet);
