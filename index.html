@@ -1,0 +1,770 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Bez laktózy">
+<meta name="theme-color" content="#2E9E6B">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Bez laktózy</title>
+<style>
+  :root{
+    --bg:#F5F4EF; --elevated:#FFFFFF; --card:#FFFFFF;
+    --text:#1B1F1B; --text-2:#6B726B; --text-3:#A2A8A2;
+    --accent:#2E9E6B; --accent-ink:#1E7A50; --accent-soft:#E4F3EB;
+    --danger:#E5484D; --danger-soft:#FCEBEB;
+    --border:rgba(0,0,0,.08); --border-strong:rgba(0,0,0,.14);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+    --shadow-md:0 1px 3px rgba(0,0,0,.06),0 10px 30px rgba(0,0,0,.05);
+    --sheet-shadow:0 -1px 0 rgba(0,0,0,.05),0 -20px 60px rgba(0,0,0,.18);
+    --radius:18px; --radius-sm:12px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --font-round:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,sans-serif;
+    --safe-t:env(safe-area-inset-top); --safe-b:env(safe-area-inset-bottom);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#111311; --elevated:#1D201D; --card:#1D201D;
+      --text:#F1F4F1; --text-2:#A7ADA7; --text-3:#71776F;
+      --accent:#45B983; --accent-ink:#7FD3AC; --accent-soft:rgba(69,185,131,.15);
+      --danger:#FF6B6E; --danger-soft:rgba(255,107,110,.14);
+      --border:rgba(255,255,255,.1); --border-strong:rgba(255,255,255,.18);
+      --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+      --shadow-md:0 1px 3px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+      --sheet-shadow:0 -20px 60px rgba(0,0,0,.5);
+    }
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:var(--font);background:var(--bg);color:var(--text);
+    -webkit-font-smoothing:antialiased;overscroll-behavior-y:none;
+    font-size:17px;line-height:1.4;
+  }
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  input,textarea{font-family:inherit;font-size:17px}
+  .hidden{display:none!important}
+
+  /* ---------- List screen ---------- */
+  #listScreen{min-height:100%;padding-bottom:calc(var(--safe-b) + 96px)}
+  .topbar{
+    padding:calc(var(--safe-t) + 10px) 20px 8px;
+    position:sticky;top:0;z-index:5;
+    background:color-mix(in srgb,var(--bg) 82%,transparent);
+    backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  }
+  .titlerow{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+  h1.big{
+    font-family:var(--font-round);font-size:34px;line-height:1.05;
+    font-weight:800;letter-spacing:-.02em;margin:2px 0 0;
+  }
+  h1.big small{display:block;font-size:14px;font-weight:600;color:var(--text-2);letter-spacing:0;margin-top:3px}
+  .iconbtn{
+    width:38px;height:38px;border-radius:50%;background:var(--elevated);
+    box-shadow:var(--shadow-sm);display:grid;place-items:center;color:var(--accent-ink);
+    border:1px solid var(--border);flex:none;
+  }
+  .iconbtn svg{width:19px;height:19px}
+  .search{
+    margin:14px 0 4px;display:flex;align-items:center;gap:8px;
+    background:var(--elevated);border:1px solid var(--border);
+    border-radius:12px;padding:9px 12px;box-shadow:var(--shadow-sm);
+  }
+  .search svg{width:17px;height:17px;color:var(--text-3);flex:none}
+  .search input{border:none;background:none;outline:none;color:var(--text);width:100%}
+  .list{padding:6px 16px 0;display:flex;flex-direction:column;gap:10px}
+  .card{
+    display:flex;align-items:center;gap:13px;background:var(--card);
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:11px;box-shadow:var(--shadow-sm);transition:transform .12s ease;
+    text-align:left;width:100%;
+  }
+  .card:active{transform:scale(.985)}
+  .thumb{
+    width:60px;height:60px;border-radius:14px;flex:none;object-fit:cover;
+    background:var(--accent-soft);display:grid;place-items:center;overflow:hidden;
+  }
+  .thumb svg{width:26px;height:26px;color:var(--accent);opacity:.65}
+  .cardmain{min-width:0;flex:1}
+  .cardname{font-weight:650;font-size:16.5px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .carddesc{color:var(--text-2);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+  .cardprice{text-align:right;flex:none;padding-left:4px}
+  .cardprice .amt{font-family:var(--font-round);font-weight:800;font-size:16px;color:var(--accent-ink);white-space:nowrap}
+  .cardprice .where{font-size:11.5px;color:var(--text-3);white-space:nowrap;max-width:92px;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+  .cardprice .none{font-size:12.5px;color:var(--text-3)}
+
+  .empty{
+    text-align:center;padding:70px 34px;color:var(--text-2);
+  }
+  .empty .circle{
+    width:76px;height:76px;border-radius:50%;background:var(--accent-soft);
+    display:grid;place-items:center;margin:0 auto 18px;
+  }
+  .empty .circle svg{width:34px;height:34px;color:var(--accent)}
+  .empty h2{font-family:var(--font-round);font-size:20px;margin:0 0 6px;color:var(--text)}
+  .empty p{margin:0;font-size:15px;line-height:1.45}
+
+  .fab{
+    position:fixed;right:20px;bottom:calc(var(--safe-b) + 22px);z-index:6;
+    height:56px;padding:0 22px 0 18px;border-radius:30px;
+    background:var(--accent);color:#fff;font-weight:700;font-size:16px;
+    display:flex;align-items:center;gap:8px;
+    box-shadow:0 8px 22px rgba(46,158,107,.42),0 2px 6px rgba(0,0,0,.15);
+  }
+  .fab:active{transform:scale(.96)}
+  .fab svg{width:22px;height:22px}
+
+  /* ---------- Detail screen ---------- */
+  #detailScreen{position:fixed;inset:0;background:var(--bg);z-index:20;overflow-y:auto;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.3,.7,.2,1);
+    -webkit-overflow-scrolling:touch;}
+  #detailScreen.show{transform:translateX(0)}
+  .dheader{
+    position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;
+    padding:calc(var(--safe-t) + 8px) 14px 8px;
+    background:color-mix(in srgb,var(--bg) 80%,transparent);
+    backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);
+  }
+  .backbtn{display:flex;align-items:center;gap:2px;color:var(--accent-ink);font-weight:600;font-size:17px;padding:6px 6px 6px 0}
+  .backbtn svg{width:22px;height:22px}
+  .dactions{display:flex;gap:8px}
+  .dactions .iconbtn{color:var(--accent-ink)}
+  .dactions .del{color:var(--danger)}
+  .dbody{padding:4px 20px calc(var(--safe-b) + 48px)}
+  .hero{
+    width:100%;aspect-ratio:4/3;border-radius:22px;object-fit:cover;
+    background:var(--accent-soft);display:grid;place-items:center;overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .hero svg{width:56px;height:56px;color:var(--accent);opacity:.6}
+  .dname{font-family:var(--font-round);font-size:27px;font-weight:800;letter-spacing:-.02em;margin:18px 0 0}
+  .ddesc{color:var(--text-2);font-size:16px;line-height:1.5;margin:8px 0 0;white-space:pre-wrap}
+  .sectionhead{display:flex;align-items:center;justify-content:space-between;margin:30px 0 10px}
+  .sectionhead h3{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-2);margin:0}
+  .addlink{color:var(--accent-ink);font-weight:650;font-size:15px;display:flex;align-items:center;gap:4px;padding:4px}
+  .addlink svg{width:17px;height:17px}
+  .pricelist{display:flex;flex-direction:column;gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+  .pricerow{display:flex;align-items:center;gap:12px;background:var(--card);padding:14px 16px;text-align:left;width:100%}
+  .pricerow:active{background:var(--accent-soft)}
+  .pr-main{flex:1;min-width:0}
+  .pr-store{font-weight:600;font-size:16px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .pr-note{color:var(--text-3);font-size:13.5px;margin-top:2px;white-space:pre-wrap}
+  .pr-right{text-align:right;flex:none;padding-left:6px}
+  .pr-amt{font-family:var(--font-round);font-weight:800;font-size:17px;white-space:nowrap}
+  .per100{font-size:12px;color:var(--text-3);margin-top:2px;white-space:nowrap;font-weight:500}
+  .dweight{display:inline-block;margin-top:12px;font-size:13px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:5px 12px;border-radius:20px}
+  .amountrow{display:flex;gap:10px;align-items:stretch}
+  .amountrow input{flex:1;min-width:0}
+  .seg{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:3px;gap:3px;flex:none}
+  .seg button{padding:0 15px;border-radius:9px;font-weight:650;font-size:15px;color:var(--text-2);min-width:44px;transition:background .12s}
+  .seg button.on{background:var(--accent);color:#fff;box-shadow:var(--shadow-sm)}
+  .tag{font-size:10.5px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:3px 7px;border-radius:20px}
+  .best .pr-amt{color:var(--accent-ink)}
+  .price-empty{background:var(--card);border:1px dashed var(--border-strong);border-radius:var(--radius);padding:24px;text-align:center;color:var(--text-2);font-size:15px}
+
+  /* ---------- Sheets ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40;opacity:0;transition:opacity .25s ease;pointer-events:none}
+  .scrim.show{opacity:1;pointer-events:auto}
+  .sheet{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:var(--elevated);border-radius:22px 22px 0 0;box-shadow:var(--sheet-shadow);
+    transform:translateY(100%);transition:transform .3s cubic-bezier(.3,.75,.2,1);
+    padding-bottom:var(--safe-b);max-height:94vh;display:flex;flex-direction:column;
+  }
+  .sheet.show{transform:translateY(0)}
+  .grabber{width:38px;height:5px;border-radius:3px;background:var(--border-strong);margin:9px auto 2px}
+  .sheethead{display:flex;align-items:center;justify-content:space-between;padding:6px 18px 8px}
+  .sheethead .t{font-weight:700;font-size:17px}
+  .sheethead button{font-size:17px;color:var(--accent-ink);padding:6px;font-weight:600}
+  .sheethead button.primary{font-weight:750}
+  .sheethead button:disabled{color:var(--text-3);opacity:.6}
+  .sheetbody{overflow-y:auto;padding:6px 18px 22px;-webkit-overflow-scrolling:touch}
+  .field{margin-top:16px}
+  .field label{display:block;font-size:13px;font-weight:650;color:var(--text-2);margin:0 0 6px 3px;text-transform:uppercase;letter-spacing:.03em}
+  .field input,.field textarea{
+    width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+    padding:13px 14px;color:var(--text);outline:none;transition:border-color .15s;
+  }
+  .field input:focus,.field textarea:focus{border-color:var(--accent)}
+  .field textarea{resize:none;line-height:1.45}
+  .photopick{
+    width:100%;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;
+    background:var(--accent-soft);border:1px solid var(--border);
+    display:grid;place-items:center;position:relative;
+  }
+  .photopick img{width:100%;height:100%;object-fit:cover}
+  .photopick .ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px}
+  .photopick .ph svg{width:32px;height:32px}
+  .photo-remove{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;backdrop-filter:blur(4px)}
+  .photo-remove svg{width:16px;height:16px}
+  .pricefields{display:flex;gap:12px}
+  .pricefields .field{flex:1;margin-top:16px}
+  .delrow{margin-top:22px;width:100%;text-align:center;color:var(--danger);font-weight:650;font-size:16px;padding:14px;background:var(--danger-soft);border-radius:var(--radius-sm)}
+
+  .exportarea{width:100%;height:34vh;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;color:var(--text-2);font-family:ui-monospace,monospace;font-size:12px;resize:none;outline:none}
+  .btnrow{display:flex;gap:10px;margin-top:14px}
+  .btn{flex:1;padding:13px;border-radius:var(--radius-sm);font-weight:650;font-size:16px;text-align:center;background:var(--accent-soft);color:var(--accent-ink)}
+  .btn.solid{background:var(--accent);color:#fff}
+  .hint{font-size:13.5px;color:var(--text-3);margin:10px 3px 0;line-height:1.45}
+
+  /* toast + banner */
+  #toast{position:fixed;left:50%;bottom:calc(var(--safe-b) + 96px);transform:translateX(-50%) translateY(20px);
+    background:var(--text);color:var(--bg);padding:11px 18px;border-radius:24px;font-size:14.5px;font-weight:600;
+    z-index:80;opacity:0;transition:.25s;pointer-events:none;box-shadow:var(--shadow-md);white-space:nowrap}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  #banner{position:fixed;top:0;left:0;right:0;z-index:90;background:var(--danger);color:#fff;
+    padding:calc(var(--safe-t) + 10px) 18px 12px;font-size:14px;text-align:center;transform:translateY(-100%);transition:.3s}
+  #banner.show{transform:translateY(0)}
+  .loading{padding:80px 0;text-align:center;color:var(--text-3)}
+  .spin{width:26px;height:26px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;margin:0 auto 12px;animation:sp .7s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+</style>
+
+<div id="banner"></div>
+
+<div id="listScreen">
+  <div class="topbar">
+    <div class="titlerow">
+      <h1 class="big">Bez laktózy<small id="counter"></small></h1>
+      <button class="iconbtn" id="settingsBtn" aria-label="Zálohování">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      </button>
+    </div>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+      <input id="searchInput" type="search" placeholder="Hledat produkt nebo obchod" autocomplete="off" enterkeyhint="search">
+    </div>
+  </div>
+  <div id="listBody">
+    <div class="loading"><div class="spin"></div>Načítám tvoji špajz…</div>
+  </div>
+</div>
+
+<button class="fab" id="addBtn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+  Přidat
+</button>
+
+<!-- Detail -->
+<div id="detailScreen">
+  <div class="dheader">
+    <button class="backbtn" id="detailBack">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>Zpět
+    </button>
+    <div class="dactions">
+      <button class="iconbtn" id="editProductBtn" aria-label="Upravit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      </button>
+      <button class="iconbtn del" id="deleteProductBtn" aria-label="Smazat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="dbody" id="detailBody"></div>
+</div>
+
+<!-- Scrim + sheets -->
+<div class="scrim" id="scrim"></div>
+
+<div class="sheet" id="productSheet">
+  <div class="grabber"></div>
+  <div class="sheethead">
+    <button id="productCancel">Zrušit</button>
+    <div class="t" id="productSheetTitle">Nový produkt</div>
+    <button class="primary" id="productSave">Uložit</button>
+  </div>
+  <div class="sheetbody">
+    <div class="photopick" id="photoPick">
+      <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.2"/></svg>Přidat fotku</div>
+    </div>
+    <input type="file" id="photoInput" accept="image/*" class="hidden">
+    <div class="field">
+      <label for="nameInput">Název</label>
+      <input id="nameInput" type="text" placeholder="např. Rostlinný jogurt Alpro" enterkeyhint="next">
+    </div>
+    <div class="field">
+      <label for="weightInput">Množství balení <span style="text-transform:none;font-weight:500;color:var(--text-3)">(pro cenu za 100 g / 100 ml)</span></label>
+      <div class="amountrow">
+        <input id="weightInput" type="text" inputmode="decimal" placeholder="např. 500" enterkeyhint="next">
+        <div class="seg" id="unitSeg">
+          <button type="button" data-u="g" class="on">g</button>
+          <button type="button" data-u="ml">ml</button>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="descInput">Stručný popis</label>
+      <textarea id="descInput" rows="3" placeholder="Chuť, velikost balení, poznámky…"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="sheet" id="priceSheet">
+  <div class="grabber"></div>
+  <div class="sheethead">
+    <button id="priceCancel">Zrušit</button>
+    <div class="t" id="priceSheetTitle">Přidat cenu</div>
+    <button class="primary" id="priceSave">Uložit</button>
+  </div>
+  <div class="sheetbody">
+    <div class="pricefields">
+      <div class="field" style="flex:1.6">
+        <label for="storeInput">Obchod</label>
+        <input id="storeInput" type="text" placeholder="např. Kaufland" enterkeyhint="next">
+      </div>
+      <div class="field">
+        <label for="priceInput">Cena (Kč)</label>
+        <input id="priceInput" type="text" inputmode="decimal" placeholder="34,90" enterkeyhint="done">
+      </div>
+    </div>
+    <div class="field">
+      <label for="priceNote">Poznámka <span style="text-transform:none;font-weight:500;color:var(--text-3)">(nepovinné)</span></label>
+      <input id="priceNote" type="text" placeholder="např. v akci, 500 g, jiná příchuť">
+    </div>
+    <button class="delrow hidden" id="priceDelete">Smazat tuto cenu</button>
+  </div>
+</div>
+
+<div class="sheet" id="settingsSheet">
+  <div class="grabber"></div>
+  <div class="sheethead">
+    <button id="settingsClose">Hotovo</button>
+    <div class="t">Záloha dat</div>
+    <button style="opacity:0;pointer-events:none">.</button>
+  </div>
+  <div class="sheetbody">
+    <p class="hint" style="margin-top:4px">Tvoje data se ukládají automaticky. Tady si můžeš vytvořit zálohu (zkopírovat text) nebo obnovit dřívější zálohu vložením textu a stiskem Obnovit.</p>
+    <textarea class="exportarea" id="exportArea" spellcheck="false" placeholder="Sem vlož zálohu pro obnovení…"></textarea>
+    <div class="btnrow">
+      <button class="btn" id="copyBackup">Zkopírovat zálohu</button>
+      <button class="btn solid" id="importBackup">Obnovit ze zálohy</button>
+    </div>
+    <p class="hint">Obnovení nahradí produkt se stejným ID, ostatní přidá. Nic nemaže.</p>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- Storage layer (IndexedDB) ---------------- */
+  var DB_NAME="bezlaktozy", STORE="products", _db=null, _dbFail=false, mem={};
+  function openDB(){
+    if(_db) return Promise.resolve(_db);
+    return new Promise(function(res,rej){
+      try{
+        var req=indexedDB.open(DB_NAME,1);
+        req.onupgradeneeded=function(e){ var d=e.target.result; if(!d.objectStoreNames.contains(STORE)) d.createObjectStore(STORE,{keyPath:"id"}); };
+        req.onsuccess=function(){ _db=req.result; res(_db); };
+        req.onerror=function(){ rej(req.error); };
+      }catch(e){ rej(e); }
+    });
+  }
+  function idbReq(mode,fn){
+    return openDB().then(function(d){
+      return new Promise(function(res,rej){
+        var t=d.transaction(STORE,mode), st=t.objectStore(STORE), r=fn(st);
+        r.onsuccess=function(){ res(r.result); };
+        r.onerror=function(){ rej(r.error); };
+      });
+    });
+  }
+  async function storeSet(id,obj){
+    if(_dbFail){ mem[id]=obj; return; }
+    try{ await idbReq("readwrite",function(st){return st.put(obj);}); }
+    catch(e){ _dbFail=true; mem[id]=obj; }
+  }
+  async function storeDelete(id){
+    if(_dbFail){ delete mem[id]; return; }
+    try{ await idbReq("readwrite",function(st){return st.delete(id);}); }
+    catch(e){ _dbFail=true; delete mem[id]; }
+  }
+  async function storeLoadAll(){
+    try{ var all=await idbReq("readonly",function(st){return st.getAll();}); return all||[]; }
+    catch(e){ _dbFail=true; return Object.keys(mem).map(function(k){return mem[k];}); }
+  }
+
+  /* ---------------- State ---------------- */
+  var products = [];          // [{id,name,desc,image,prices:[{id,store,price,note,ts}]}]
+  var currentId = null;       // open detail
+  var editingProduct = null;  // product being edited in sheet (null = new)
+  var editingPrice = null;    // price being edited (null = new)
+  var draftImage = null;      // image data-url held during product edit
+  var draftUnit = "g";        // 'g' | 'ml' chosen in the unit toggle
+  var query = "";
+
+  var money = new Intl.NumberFormat("cs-CZ",{style:"currency",currency:"CZK"});
+
+  function uid(p){ return p + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+  function byId(id){ for(var i=0;i<products.length;i++) if(products[i].id===id) return products[i]; return null; }
+  function esc(s){ return (s==null?"":String(s)).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+  function bestPrice(p){
+    if(!p.prices || !p.prices.length) return null;
+    var b = p.prices[0];
+    for(var i=1;i<p.prices.length;i++) if(p.prices[i].price < b.price) b = p.prices[i];
+    return b;
+  }
+
+  // Množství: přijme "500", "500 g", "0,5 kg", "500 ml", "1 l". Vrátí {amount, unit} nebo null.
+  // defUnit = jednotka z přepínače, použije se když uživatel jednotku nenapíše.
+  function parseAmount(s, defUnit){
+    s=(s||"").trim().toLowerCase().replace(/\s/g,"").replace(",",".");
+    if(!s) return null;
+    var unit=defUnit||"g", mult=1;
+    if(/kg$/.test(s)){ unit="g"; mult=1000; }
+    else if(/ml$/.test(s)){ unit="ml"; mult=1; }
+    else if(/l$/.test(s)){ unit="ml"; mult=1000; }
+    else if(/g$/.test(s)){ unit="g"; mult=1; }
+    var num=parseFloat(s.replace(/[a-z]+$/,""));
+    if(!isFinite(num)||num<=0) return null;
+    return { amount:Math.round(num*mult*10)/10, unit:unit };
+  }
+  // jen detekce jednotky z rozepsaného textu (pro živý přepínač)
+  function detectUnit(s){
+    s=(s||"").toLowerCase();
+    if(/ml\s*$/.test(s)) return "ml";
+    if(/(^|[\d.,])l\s*$/.test(s)) return "ml";
+    if(/kg\s*$/.test(s)||/g\s*$/.test(s)) return "g";
+    return null;
+  }
+  function fmtAmount(w,unit){
+    if(!w) return "";
+    unit=unit||"g";
+    if(unit==="ml"){
+      if(w>=1000) return (w/1000).toLocaleString("cs-CZ",{maximumFractionDigits:3})+" l";
+      return (Math.round(w*10)/10).toLocaleString("cs-CZ")+" ml";
+    }
+    if(w>=1000) return (w/1000).toLocaleString("cs-CZ",{maximumFractionDigits:3})+" kg";
+    return (Math.round(w*10)/10).toLocaleString("cs-CZ")+" g";
+  }
+  // Cena za 100 g / 100 ml podle jednotky
+  function per100Str(price,amount,unit){
+    if(!amount||amount<=0) return "";
+    return money.format(price/amount*100)+" / 100 "+(unit||"g");
+  }
+
+  /* ---------------- DOM refs ---------------- */
+  var $ = function(id){ return document.getElementById(id); };
+  var listBody=$("listBody"), counter=$("counter"), searchInput=$("searchInput");
+  var detailScreen=$("detailScreen"), detailBody=$("detailBody");
+  var scrim=$("scrim");
+  var productSheet=$("productSheet"), priceSheet=$("priceSheet"), settingsSheet=$("settingsSheet");
+  var photoPick=$("photoPick"), photoInput=$("photoInput");
+  var nameInput=$("nameInput"), weightInput=$("weightInput"), descInput=$("descInput"), unitSeg=$("unitSeg");
+  var storeInput=$("storeInput"), priceInput=$("priceInput"), priceNote=$("priceNote"), priceDelete=$("priceDelete");
+  var toastEl=$("toast"), bannerEl=$("banner");
+
+  var PLACE_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 7 8 3h8l3.5 4"/><path d="M4.5 7v12a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V7"/><path d="M9 3v4a3 3 0 0 0 6 0V3"/></svg>';
+
+  /* ---------------- Toast / banner ---------------- */
+  var toastT;
+  function toast(msg){ toastEl.textContent=msg; toastEl.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(function(){toastEl.classList.remove("show");},1900); }
+  function banner(msg){ bannerEl.textContent=msg; bannerEl.classList.add("show"); setTimeout(function(){bannerEl.classList.remove("show");},4200); }
+
+  /* ---------------- Render: list ---------------- */
+  function renderList(){
+    counter.textContent = products.length ? (products.length + (products.length===1?" produkt":(products.length<5?" produkty":" produktů"))) : "";
+    var q = query.trim().toLowerCase();
+    var items = products.slice().sort(function(a,b){ return a.name.localeCompare(b.name,"cs"); });
+    if(q){
+      items = items.filter(function(p){
+        if(p.name.toLowerCase().indexOf(q)>=0) return true;
+        if((p.desc||"").toLowerCase().indexOf(q)>=0) return true;
+        return (p.prices||[]).some(function(pr){ return (pr.store||"").toLowerCase().indexOf(q)>=0; });
+      });
+    }
+
+    if(!products.length){
+      listBody.innerHTML =
+        '<div class="empty"><div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 7 8 3h8l3.5 4"/><path d="M4.5 7v12a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V7"/><path d="M9 3v4a3 3 0 0 0 6 0V3"/></svg></div>'+
+        '<h2>Zatím prázdno</h2><p>Přidej první bezlaktózový produkt — fotku, popis a ceny v obchodech, kde ho kupuješ.</p></div>';
+      return;
+    }
+    if(!items.length){
+      listBody.innerHTML='<div class="empty"><div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg></div><h2>Nic nenalezeno</h2><p>Zkus jiný název nebo obchod.</p></div>';
+      return;
+    }
+
+    var html='<div class="list">';
+    items.forEach(function(p){
+      var b=bestPrice(p);
+      var thumb = p.image ? '<img class="thumb" src="'+p.image+'" alt="">' : '<div class="thumb">'+PLACE_ICON+'</div>';
+      var pu = b ? per100Str(b.price, p.weight||null, p.unit||"g") : "";
+      var price = b
+        ? '<div class="amt">'+money.format(b.price)+'</div><div class="where">'+esc(b.store)+'</div>'+(pu?'<div class="per100">'+pu+'</div>':'')
+        : '<div class="none">— bez ceny</div>';
+      html+='<button class="card" data-id="'+p.id+'">'+thumb+
+        '<div class="cardmain"><div class="cardname">'+esc(p.name)+'</div>'+
+        (p.desc?'<div class="carddesc">'+esc(p.desc)+'</div>':'<div class="carddesc" style="color:var(--text-3)">bez popisu</div>')+
+        '</div><div class="cardprice">'+price+'</div></button>';
+    });
+    html+='</div>';
+    listBody.innerHTML=html;
+    Array.prototype.forEach.call(listBody.querySelectorAll(".card"),function(el){
+      el.addEventListener("click",function(){ openDetail(el.getAttribute("data-id")); });
+    });
+  }
+
+  /* ---------------- Render: detail ---------------- */
+  function renderDetail(){
+    var p = byId(currentId);
+    if(!p){ closeDetail(); return; }
+    var hero = p.image ? '<img class="hero" src="'+p.image+'" alt="">' : '<div class="hero">'+PLACE_ICON+'</div>';
+    var w = p.weight||null;
+    var unit = p.unit||"g";
+    var prices = (p.prices||[]).slice().sort(function(a,b){return a.price-b.price;});
+    var best = prices.length ? prices[0].price : null;
+
+    var priceHtml;
+    if(!prices.length){
+      priceHtml='<div class="price-empty">Zatím žádná cena.<br>Přidej obchod, kde tenhle produkt kupuješ.</div>';
+    } else {
+      priceHtml='<div class="pricelist">';
+      prices.forEach(function(pr){
+        var isBest = prices.length>1 && pr.price===best;
+        var pu = per100Str(pr.price,w,unit);
+        priceHtml+='<button class="pricerow'+(isBest?' best':'')+'" data-pid="'+pr.id+'">'+
+          '<div class="pr-main"><div class="pr-store">'+esc(pr.store)+(isBest?'<span class="tag">nejlevnější</span>':'')+'</div>'+
+          (pr.note?'<div class="pr-note">'+esc(pr.note)+'</div>':'')+'</div>'+
+          '<div class="pr-right"><div class="pr-amt">'+money.format(pr.price)+'</div>'+
+          (pu?'<div class="per100">'+pu+'</div>':'')+'</div></button>';
+      });
+      priceHtml+='</div>';
+    }
+
+    detailBody.innerHTML = hero+
+      '<div class="dname">'+esc(p.name)+'</div>'+
+      (w?'<div class="dweight">'+fmtAmount(w,unit)+'</div>':'')+
+      (p.desc?'<div class="ddesc">'+esc(p.desc)+'</div>':'')+
+      '<div class="sectionhead"><h3>Ceny v obchodech</h3>'+
+        '<button class="addlink" id="addPriceBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Přidat</button></div>'+
+      priceHtml;
+
+    $("addPriceBtn").addEventListener("click",function(){ openPriceSheet(null); });
+    Array.prototype.forEach.call(detailBody.querySelectorAll(".pricerow"),function(el){
+      el.addEventListener("click",function(){ openPriceSheet(el.getAttribute("data-pid")); });
+    });
+  }
+
+  function openDetail(id){ currentId=id; renderDetail(); detailScreen.classList.add("show"); }
+  function closeDetail(){ detailScreen.classList.remove("show"); currentId=null; }
+
+  /* ---------------- Sheets ---------------- */
+  function openSheet(sheet){ scrim.classList.add("show"); sheet.classList.add("show"); }
+  function closeSheet(sheet){ sheet.classList.remove("show"); scrim.classList.remove("show"); }
+  function anySheetOpen(){ return productSheet.classList.contains("show")||priceSheet.classList.contains("show")||settingsSheet.classList.contains("show"); }
+
+  /* Product sheet */
+  function setUnit(u){
+    draftUnit = (u==="ml") ? "ml" : "g";
+    Array.prototype.forEach.call(unitSeg.querySelectorAll("button"),function(b){
+      b.classList.toggle("on", b.getAttribute("data-u")===draftUnit);
+    });
+  }
+  function paintPhoto(){
+    if(draftImage){
+      photoPick.innerHTML='<img src="'+draftImage+'" alt=""><button class="photo-remove" id="photoRemove" aria-label="Odebrat fotku"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
+      $("photoRemove").addEventListener("click",function(e){ e.stopPropagation(); draftImage=null; paintPhoto(); });
+    } else {
+      photoPick.innerHTML='<div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.2"/></svg>Přidat fotku</div>';
+    }
+  }
+  function openProductSheet(product){
+    editingProduct = product;
+    $("productSheetTitle").textContent = product ? "Upravit produkt" : "Nový produkt";
+    nameInput.value = product ? product.name : "";
+    var u = (product && product.unit) ? product.unit : "g";
+    setUnit(u);
+    weightInput.value = (product && product.weight)
+      ? (Math.round(product.weight*10)/10).toLocaleString("cs-CZ")
+      : "";
+    descInput.value = product ? (product.desc||"") : "";
+    draftImage = product ? (product.image||null) : null;
+    paintPhoto();
+    openSheet(productSheet);
+    if(!product) setTimeout(function(){ nameInput.focus(); },330);
+  }
+  async function saveProduct(){
+    var name = nameInput.value.trim();
+    if(!name){ toast("Zadej název produktu"); nameInput.focus(); return; }
+    var desc = descInput.value.trim();
+    var parsed = parseAmount(weightInput.value, draftUnit);
+    var weight = parsed ? parsed.amount : null;
+    var unit = parsed ? parsed.unit : draftUnit;
+    try{
+      if(editingProduct){
+        editingProduct.name=name; editingProduct.desc=desc; editingProduct.weight=weight; editingProduct.unit=unit; editingProduct.image=draftImage||null;
+        await storeSet(editingProduct.id, editingProduct);
+      } else {
+        var p={ id:uid("p_"), name:name, desc:desc, weight:weight, unit:unit, image:draftImage||null, prices:[] };
+        products.push(p); await storeSet(p.id,p);
+      }
+      closeSheet(productSheet);
+      renderList(); if(currentId) renderDetail();
+      toast(editingProduct?"Uloženo":"Produkt přidán");
+    }catch(e){ banner("Nepodařilo se uložit. Zkus to prosím znovu."); }
+  }
+
+  /* Price sheet */
+  function openPriceSheet(priceId){
+    var p = byId(currentId); if(!p) return;
+    editingPrice = priceId ? (p.prices||[]).filter(function(x){return x.id===priceId;})[0] : null;
+    $("priceSheetTitle").textContent = editingPrice ? "Upravit cenu" : "Přidat cenu";
+    storeInput.value = editingPrice ? editingPrice.store : "";
+    priceInput.value = editingPrice ? String(editingPrice.price).replace(".",",") : "";
+    priceNote.value = editingPrice ? (editingPrice.note||"") : "";
+    priceDelete.classList.toggle("hidden", !editingPrice);
+    openSheet(priceSheet);
+    if(!editingPrice) setTimeout(function(){ storeInput.focus(); },330);
+  }
+  function parsePrice(s){
+    s=(s||"").trim().replace(/\s/g,"").replace(/kč|czk/gi,"").replace(",",".");
+    var v=parseFloat(s);
+    return (isFinite(v)&&v>=0)?Math.round(v*100)/100:null;
+  }
+  async function savePrice(){
+    var p = byId(currentId); if(!p) return;
+    var store = storeInput.value.trim();
+    var val = parsePrice(priceInput.value);
+    if(!store){ toast("Zadej název obchodu"); storeInput.focus(); return; }
+    if(val===null){ toast("Zadej platnou cenu"); priceInput.focus(); return; }
+    var note = priceNote.value.trim();
+    if(!p.prices) p.prices=[];
+    if(editingPrice){ editingPrice.store=store; editingPrice.price=val; editingPrice.note=note; }
+    else { p.prices.push({ id:uid("pr_"), store:store, price:val, note:note, ts:Date.now() }); }
+    try{
+      await storeSet(p.id,p);
+      closeSheet(priceSheet); renderDetail(); renderList();
+      toast(editingPrice?"Cena upravena":"Cena přidána");
+    }catch(e){ banner("Nepodařilo se uložit cenu."); }
+  }
+  async function deletePrice(){
+    var p = byId(currentId); if(!p||!editingPrice) return;
+    p.prices = p.prices.filter(function(x){return x.id!==editingPrice.id;});
+    try{ await storeSet(p.id,p); closeSheet(priceSheet); renderDetail(); renderList(); toast("Cena smazána"); }
+    catch(e){ banner("Nepodařilo se smazat."); }
+  }
+
+  async function deleteProduct(){
+    var p = byId(currentId); if(!p) return;
+    if(!confirm('Smazat "'+p.name+'" i se všemi cenami?')) return;
+    try{
+      await storeDelete(p.id);
+      products = products.filter(function(x){return x.id!==p.id;});
+      closeDetail(); renderList(); toast("Produkt smazán");
+    }catch(e){ banner("Nepodařilo se smazat produkt."); }
+  }
+
+  /* ---------------- Image compression ---------------- */
+  function compressImage(file){
+    return new Promise(function(resolve,reject){
+      var reader=new FileReader();
+      reader.onload=function(ev){
+        var img=new Image();
+        img.onload=function(){
+          var max=1000,w=img.width,h=img.height;
+          if(w>h){ if(w>max){ h=Math.round(h*max/w); w=max; } }
+          else { if(h>max){ w=Math.round(w*max/h); h=max; } }
+          var c=document.createElement("canvas"); c.width=w; c.height=h;
+          c.getContext("2d").drawImage(img,0,0,w,h);
+          try{ resolve(c.toDataURL("image/jpeg",0.72)); }catch(e){ reject(e); }
+        };
+        img.onerror=reject; img.src=ev.target.result;
+      };
+      reader.onerror=reject; reader.readAsDataURL(file);
+    });
+  }
+
+  /* ---------------- Backup ---------------- */
+  function openSettings(){
+    $("exportArea").value = products.length ? JSON.stringify(products) : "";
+    openSheet(settingsSheet);
+  }
+  function copyBackup(){
+    var txt=JSON.stringify(products); var ta=$("exportArea"); ta.value=txt;
+    ta.focus(); ta.select();
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){toast("Záloha zkopírována");},function(){toast("Vyber text a zkopíruj ručně");});
+    } else { try{ document.execCommand("copy"); toast("Záloha zkopírována"); }catch(e){ toast("Vyber text a zkopíruj ručně"); } }
+  }
+  async function importBackup(){
+    var raw=$("exportArea").value.trim();
+    if(!raw){ toast("Vlož text zálohy"); return; }
+    var arr;
+    try{ arr=JSON.parse(raw); }catch(e){ banner("Záloha není platná (nejde přečíst)."); return; }
+    if(!Array.isArray(arr)){ banner("Záloha nemá správný formát."); return; }
+    var n=0;
+    for(var i=0;i<arr.length;i++){
+      var it=arr[i];
+      if(!it||!it.id||!it.name) continue;
+      it.prices = Array.isArray(it.prices)?it.prices:[];
+      try{ await storeSet(it.id,it); }catch(e){ banner("Obnovení selhalo při ukládání."); return; }
+      var ex=byId(it.id);
+      if(ex){ ex.name=it.name; ex.desc=it.desc||""; ex.image=it.image||null; ex.prices=it.prices; }
+      else products.push(it);
+      n++;
+    }
+    closeSheet(settingsSheet); renderList();
+    toast(n+" produktů obnoveno");
+  }
+
+  /* ---------------- Events ---------------- */
+  $("addBtn").addEventListener("click",function(){ openProductSheet(null); });
+  $("productCancel").addEventListener("click",function(){ closeSheet(productSheet); });
+  $("productSave").addEventListener("click",saveProduct);
+  photoPick.addEventListener("click",function(){ photoInput.click(); });
+  Array.prototype.forEach.call(unitSeg.querySelectorAll("button"),function(b){
+    b.addEventListener("click",function(){ setUnit(b.getAttribute("data-u")); });
+  });
+  weightInput.addEventListener("input",function(){
+    var u=detectUnit(weightInput.value);
+    if(u) setUnit(u);
+  });
+  photoInput.addEventListener("change",function(){
+    var f=photoInput.files&&photoInput.files[0]; if(!f) return;
+    compressImage(f).then(function(d){ draftImage=d; paintPhoto(); }).catch(function(){ toast("Fotku se nepodařilo načíst"); });
+    photoInput.value="";
+  });
+
+  $("detailBack").addEventListener("click",closeDetail);
+  $("editProductBtn").addEventListener("click",function(){ var p=byId(currentId); if(p) openProductSheet(p); });
+  $("deleteProductBtn").addEventListener("click",deleteProduct);
+
+  $("priceCancel").addEventListener("click",function(){ closeSheet(priceSheet); });
+  $("priceSave").addEventListener("click",savePrice);
+  priceDelete.addEventListener("click",deletePrice);
+
+  $("settingsBtn").addEventListener("click",openSettings);
+  $("settingsClose").addEventListener("click",function(){ closeSheet(settingsSheet); });
+  $("copyBackup").addEventListener("click",copyBackup);
+  $("importBackup").addEventListener("click",importBackup);
+
+  scrim.addEventListener("click",function(){
+    if(productSheet.classList.contains("show")) closeSheet(productSheet);
+    if(priceSheet.classList.contains("show")) closeSheet(priceSheet);
+    if(settingsSheet.classList.contains("show")) closeSheet(settingsSheet);
+  });
+
+  searchInput.addEventListener("input",function(){ query=searchInput.value; renderList(); });
+
+  /* ---------------- Boot ---------------- */
+  (async function init(){
+    try{
+      products = await storeLoadAll();
+    }catch(e){
+      products=[]; banner("Data se nepodařilo načíst. Zkus appku otevřít znovu.");
+    }
+    if(_dbFail){ banner("Ukládání v prohlížeči teď nejde — data se po zavření neuloží. Vypni anonymní režim nebo zkus jiný prohlížeč."); }
+    renderList();
+  })();
+})();
+</script>
+
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load",function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+}
+</script>

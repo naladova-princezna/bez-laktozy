@@ -1,0 +1,48 @@
+BEZ LAKTÓZY — jak z toho udělat ikonu na ploše iPhonu
+=====================================================
+
+Tenhle balíček je hotová aplikace. Nemusíš nic programovat.
+Stačí ji dát na internet (zdarma) a pak přidat na plochu iPhonu.
+
+Soubory: index.html, manifest.webmanifest, sw.js, icon-180/192/512.png
+(Nahrávej vždy VŠECHNY najednou a nech názvy, jak jsou.)
+
+
+KROK 1 — DÁT APLIKACI NA INTERNET (vyber si jednu z cest)
+---------------------------------------------------------
+A) Netlify Drop — nejrychlejší (cca 2 minuty)
+   1. Otevři v prohlížeči: https://app.netlify.com/drop
+   2. Přetáhni celou složku s těmito soubory do okna.
+   3. Dostaneš odkaz typu https://nazev.netlify.app — to je tvoje appka.
+   4. (Volitelně) Založ si zdarma účet, ať odkaz zůstane napořád.
+
+B) GitHub Pages — trvalejší, „vlastní" appka
+   1. Založ si účet na https://github.com
+   2. New repository -> název např. "bez-laktozy" -> Create.
+   3. "uploading an existing file" -> nahraj všechny soubory -> Commit.
+   4. Settings -> Pages -> Branch: main -> Save.
+   5. Za chvíli běží na https://TVEUZIVATELSKEJMENO.github.io/bez-laktozy/
+
+
+KROK 2 — PŘIDAT NA PLOCHU IPHONU
+--------------------------------
+1. Odkaz z Kroku 1 otevři v prohlížeči SAFARI (ne v Chrome).
+2. Klepni na ikonu Sdílet (čtvereček se šipkou nahoru).
+3. "Přidat na plochu" -> Přidat.
+4. Na ploše se objeví ikona "Bez laktózy". Spouští se na celou obrazovku.
+
+
+KROK 3 — PŘENÉST DATA, KTERÁ UŽ MÁŠ
+-----------------------------------
+Data se nepřenášejí sama (nová appka má vlastní úložiště).
+1. Ve staré verzi (v Claude appce) klepni nahoře na ikonu zálohy
+   -> "Zkopírovat zálohu".
+2. V nové appce na ploše klepni na stejnou ikonu zálohy
+   -> vlož text do pole -> "Obnovit ze zálohy".
+Hotovo, produkty i ceny se přenesou.
+
+
+POZNÁMKY
+--------
+- Appka funguje i offline. Data jsou uložená jen v tomto zařízení.
+- Zálohu (Krok 3, bod 1) si občas ulož stranou pro jistotu.
