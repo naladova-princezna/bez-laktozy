@@ -246,6 +246,9 @@
   #reader{width:100%;min-height:280px;border-radius:16px;overflow:hidden;background:#000}
   #reader video{border-radius:16px}
   .scan-status{text-align:center;color:var(--text-2);font-size:14.5px;margin-top:12px;line-height:1.45}
+  .manual-ean{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .manual-ean input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 14px;color:var(--text);outline:none;text-align:center;letter-spacing:.04em}
+  .manual-ean input:focus{border-color:var(--accent)}
 
   /* Confirm dialog */
   .dialog{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%);z-index:60;width:min(340px,86vw);background:var(--elevated);border-radius:20px;box-shadow:var(--sheet-shadow);padding:22px;opacity:0;pointer-events:none;transition:opacity .2s, transform .2s}
@@ -266,17 +269,6 @@
   .loading{padding:80px 0;text-align:center;color:var(--text-3)}
   .spin{width:26px;height:26px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;margin:0 auto 12px;animation:sp .7s linear infinite}
   @keyframes sp{to{transform:rotate(360deg)}}
-
-  /* larger font mode */
-  body.big-text{font-size:19px}
-  body.big-text .cardname{font-size:18px}
-  body.big-text .carddesc{font-size:15.5px}
-  body.big-text .cardprice .amt{font-size:17.5px}
-  body.big-text .dname{font-size:30px}
-  body.big-text .ddesc{font-size:18px}
-  body.big-text .pr-store{font-size:17.5px}
-  body.big-text .pr-amt{font-size:18.5px}
-  body.big-text .score-title{font-size:17.5px}
 </style>
 
 <div id="banner"></div>
@@ -399,7 +391,6 @@
   <div class="grabber"></div>
   <div class="sheethead"><button style="opacity:0;pointer-events:none">.</button><div class="t">Nastavení a záloha</div><button id="settingsClose">Hotovo</button></div>
   <div class="sheetbody">
-    <div class="field"><label>Velikost písma</label><div class="seg" id="fontSeg" style="width:100%"><button type="button" data-f="normal" class="on" style="flex:1">Normální</button><button type="button" data-f="large" style="flex:1">Větší</button></div></div>
     <div class="field"><label>Záloha dat</label>
       <button class="btn solid" id="downloadBackup" style="margin-top:2px">Stáhnout zálohu (soubor)</button>
       <button class="btn" id="uploadBackup" style="margin-top:10px">Nahrát zálohu ze souboru</button>
@@ -416,6 +407,10 @@
   <div class="sheetbody">
     <div id="reader"></div>
     <div class="scan-status" id="scanStatus">Namiř foťák na čárový kód (EAN) produktu.</div>
+    <div class="manual-ean">
+      <input id="manualEan" type="text" inputmode="numeric" placeholder="Nejde to? Zadej číslo EAN ručně" enterkeyhint="search">
+      <button class="btn solid" id="manualEanBtn">Najít podle kódu</button>
+    </div>
   </div>
 </div>
 
@@ -464,7 +459,7 @@
   /* ---------- State ---------- */
   var products=[], currentId=null, editingProduct=null, editingPrice=null, draftImage=null, draftUnit="g", draftCat=null, draftBarcode=null, query="";
   var sortKey="name", filters={scores:new Set(), cats:new Set(), store:null, brand:null};
-  var basket=new Set(), prefs={fontSize:"normal"};
+  var basket=new Set(), prefs={};
   var money=new Intl.NumberFormat("cs-CZ",{style:"currency",currency:"CZK"});
 
   var CATS=[
@@ -731,23 +726,38 @@
   /* ---------- Scanning + Open Food Facts ---------- */
   var scanner=null, scanning=false;
   function startScan(){
-    if(typeof Html5Qrcode==="undefined"){ banner("Skener se nenačetl (potřebuje připojení k internetu při prvním spuštění)."); return; }
-    $("scanStatus").textContent="Namiř foťák na čárový kód (EAN) produktu.";
+    if(typeof Html5Qrcode==="undefined"){ $("manualEan").value=""; $("scanStatus").textContent="Skener se nenačetl — zadej číslo EAN ručně níže."; openSheet($("scanSheet")); return; }
+    $("manualEan").value="";
+    $("scanStatus").textContent="Spouštím kameru…";
     openSheet($("scanSheet"));
-    var fmts=[]; try{ var F=window.Html5QrcodeSupportedFormats; fmts=[F.EAN_13,F.EAN_8,F.UPC_A,F.UPC_E]; }catch(e){ fmts=undefined; }
-    scanner=new Html5Qrcode("reader",{formatsToSupport:fmts, verbose:false});
+    var fmts; try{ var F=window.Html5QrcodeSupportedFormats; fmts=[F.EAN_13,F.EAN_8,F.UPC_A,F.UPC_E,F.CODE_128]; }catch(e){ fmts=undefined; }
+    try{ scanner=new Html5Qrcode("reader",{formatsToSupport:fmts, experimentalFeatures:{useBarCodeDetectorIfSupported:true}, verbose:false}); }
+    catch(e){ scanner=null; $("scanStatus").textContent="Skener nejde spustit — zadej číslo EAN ručně níže."; return; }
     scanning=true;
-    scanner.start({facingMode:"environment"},{fps:10,qrbox:function(vw,vh){var w=Math.min(280,vw-40);return {width:w,height:Math.round(w*0.62)};}},
-      function(text){ if(!scanning) return; scanning=false; stopScan(function(){ lookupOFF((text||"").replace(/\D/g,"")); }); },
-      function(){}
-    ).catch(function(err){ scanning=false; closeSheet($("scanSheet")); banner("Nepodařilo se spustit kameru. Zkontroluj povolení fotoaparátu v Safari."); });
+    // Wide scanning strip works best for 1D barcodes (EAN)
+    var config={fps:12, aspectRatio:1.0, disableFlip:true, qrbox:function(vw,vh){ var w=Math.max(180,Math.min(vw-16,vw*0.92)); var h=Math.round(Math.min(w*0.55,vh*0.6)); return {width:Math.round(w),height:h}; }};
+    var onDecode=function(text){ if(!scanning) return; scanning=false; $("scanStatus").textContent="Načítám z Open Food Facts…"; stopScan(function(){ lookupOFF((text||"").replace(/\D/g,"")); }); };
+    var ready=function(){ $("scanStatus").textContent="Namiř foťák na čárový kód (EAN). Drž ho vodorovně přes celou šířku."; };
+    var fail=function(){ scanning=false; try{ if(scanner) scanner.clear(); }catch(e){} scanner=null; $("scanStatus").textContent="Kameru se nepodařilo spustit (zkontroluj povolení fotoaparátu v Safari). Zadej číslo EAN ručně níže."; };
+    var startWith=function(cam){ return scanner.start(cam,config,onDecode,function(){}); };
+    // iOS: facingMode is most reliable; fall back to explicit back-camera id
+    startWith({facingMode:"environment"}).then(ready).catch(function(){
+      try{
+        Html5Qrcode.getCameras().then(function(cams){
+          if(!cams||!cams.length){ fail(); return; }
+          var camId=cams[cams.length-1].id;
+          for(var i=0;i<cams.length;i++){ if(/back|rear|zad|environment/i.test(cams[i].label||"")){ camId=cams[i].id; break; } }
+          startWith(camId).then(ready).catch(fail);
+        }).catch(fail);
+      }catch(e){ fail(); }
+    });
   }
   function stopScan(after){
     var done=function(){ try{ if(scanner) scanner.clear(); }catch(e){} scanner=null; closeSheet($("scanSheet")); if(after) after(); };
-    if(scanner&&scanning===false){ scanner.stop().then(done).catch(done); }
-    else if(scanner){ scanning=false; scanner.stop().then(done).catch(done); }
+    if(scanner){ try{ scanner.stop().then(done).catch(done); }catch(e){ done(); } }
     else done();
   }
+  function manualLookup(){ var v=($("manualEan").value||"").replace(/\D/g,""); if(v.length<6){ toast("Zadej platné číslo EAN (aspoň 6 číslic)"); return; } scanning=false; $("scanStatus").textContent="Načítám z Open Food Facts…"; stopScan(function(){ lookupOFF(v); }); }
   function guessCat(tags){ tags=(tags||[]).join(" ");
     if(/yogurt/.test(tags)) return "jogurt"; if(/cheese/.test(tags)) return "syr";
     if(/butter|margarin/.test(tags)) return "maslo"; if(/cream/.test(tags)) return "smetana";
@@ -885,9 +895,6 @@
     renderList(); toast(n+" produktů nahráno");
   }
 
-  /* ---------- Font size ---------- */
-  function applyFont(){ document.body.classList.toggle("big-text",prefs.fontSize==="large"); Array.prototype.forEach.call($("fontSeg").querySelectorAll("button"),function(b){ b.classList.toggle("on",b.getAttribute("data-f")===prefs.fontSize); }); }
-
   /* ---------- Events ---------- */
   $("addBtn").addEventListener("click",function(){ openProductSheet(null); });
   $("productCancel").addEventListener("click",function(){ closeSheet($("productSheet")); });
@@ -909,6 +916,8 @@
   $("scanTopBtn").addEventListener("click",startScan);
   $("sheetScanBtn").addEventListener("click",function(){ closeSheet($("productSheet")); setTimeout(startScan,120); });
   $("scanCancel").addEventListener("click",function(){ scanning=false; stopScan(); });
+  $("manualEanBtn").addEventListener("click",manualLookup);
+  $("manualEan").addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); manualLookup(); } });
 
   $("sortBtn").addEventListener("click",openSort);
   $("sortClose").addEventListener("click",function(){ closeSheet($("sortSheet")); });
@@ -923,9 +932,8 @@
   $("basketClose").addEventListener("click",function(){ closeSheet($("basketSheet")); });
   $("basketClear").addEventListener("click",function(){ basket.clear(); persistBasket(); updateBasketBadge(); renderBasket(); });
 
-  $("settingsBtn").addEventListener("click",function(){ applyFont(); openSheet($("settingsSheet")); });
+  $("settingsBtn").addEventListener("click",function(){ openSheet($("settingsSheet")); });
   $("settingsClose").addEventListener("click",function(){ closeSheet($("settingsSheet")); });
-  Array.prototype.forEach.call($("fontSeg").querySelectorAll("button"),function(b){ b.addEventListener("click",function(){ prefs.fontSize=b.getAttribute("data-f"); applyFont(); metaSet("prefs",prefs); }); });
   $("downloadBackup").addEventListener("click",downloadBackup);
   $("uploadBackup").addEventListener("click",function(){ $("backupFile").click(); });
   $("backupFile").addEventListener("change",function(){ var f=this.files&&this.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ importFromText(String(rd.result)); }; rd.onerror=function(){ banner("Soubor se nepodařilo přečíst."); }; rd.readAsText(f); this.value=""; });
@@ -947,7 +955,7 @@
     try{ var pr=await metaGet("prefs"); if(pr){ prefs=pr; if(prefs.sort){ sortKey=prefs.sort; } } }catch(e){}
     try{ var bk=await metaGet("basket"); if(Array.isArray(bk)) bk.forEach(function(id){ basket.add(id); }); }catch(e){}
     $("sortLabel").textContent=sortShortLabel(sortKey);
-    applyFont(); paintScoreChips(); updateBasketBadge();
+    paintScoreChips(); updateBasketBadge();
     if(_dbFail) banner("Ukládání v prohlížeči teď nejde — data se po zavření neuloží. Vypni anonymní režim nebo zkus jiný prohlížeč.");
     renderList();
   })();
