@@ -1,48 +1,46 @@
-LACTOSTOP — jak z toho udělat ikonu na ploše iPhonu
-=====================================================
+LactoSTOP — návod k nasazení a aktualizaci
+==========================================
 
-Tenhle balíček je hotová aplikace. Nemusíš nic programovat.
-Stačí ji dát na internet (zdarma) a pak přidat na plochu iPhonu.
+CO JE NOVÉ V TÉTO VERZI
+- Skenování čárového kódu (EAN) + automatické vyplnění z databáze Open Food Facts
+  (název, výrobce, fotka, množství, a kde je k dispozici i laktóza → skóre).
+- Duplikovat produkt (pro varianty – jiná příchuť/velikost).
+- Řazení: název, nejnovější, skóre, cena za 100 g/ml, výrobce.
+- Filtry: kategorie, výrobce, obchod + rychlé skóre A–E.
+- Kategorie s barevným rozlišením (jogurty, sýry, mléka, máslo…).
+- Nákupní košík: vyber produkty a appka řekne, kde vyjde nákup nejlevněji.
+- Záloha do SOUBORU (stažení / nahrání), místo kopírování textu.
+- Větší písmo, hezčí potvrzení mazání, plynulejší přechody.
 
-Soubory: index.html, manifest.webmanifest, sw.js, icon-180/192/512.png
-(Nahrávej vždy VŠECHNY najednou a nech názvy, jak jsou.)
+JAK NASADIT (poprvé)
+1. Nahraj VŠECHNY soubory z tohoto balíčku do kořene repozitáře na GitHubu:
+     index.html
+     manifest.webmanifest
+     sw.js
+     icon-180.png, icon-192.png, icon-512.png
+     lib/html5-qrcode.min.js   ← POZOR: složka "lib" je nová a musí tam být!
+2. Settings → Pages → Branch: main → Save. Repozitář musí být Public.
+3. Na iPhonu otevři adresu v Safari → Sdílet → Přidat na plochu.
 
+JAK AKTUALIZOVAT (máš už starší verzi na GitHubu)
+1. Přepiš staré soubory těmito a PŘIDEJ novou složku lib/ se souborem html5-qrcode.min.js.
+2. Počkej ~1 minutu, než se Pages přegenerují.
+3. Na iPhonu smaž starou ikonu z plochy a přidej ji znovu (obnoví se název, ikona i cache).
 
-KROK 1 — DÁT APLIKACI NA INTERNET (vyber si jednu z cest)
----------------------------------------------------------
-A) Netlify Drop — nejrychlejší (cca 2 minuty)
-   1. Otevři v prohlížeči: https://app.netlify.com/drop
-   2. Přetáhni celou složku s těmito soubory do okna.
-   3. Dostaneš odkaz typu https://nazev.netlify.app — to je tvoje appka.
-   4. (Volitelně) Založ si zdarma účet, ať odkaz zůstane napořád.
+SKENOVÁNÍ – co potřebuje
+- Funguje jen přes https (z GitHub Pages ano).
+- Při prvním spuštění povol Safari přístup k FOTOAPARÁTU.
+- Sken i doplnění z Open Food Facts potřebují internet.
+- U některých produktů data v databázi chybí – pak se otevře prázdný formulář a vyplníš ručně.
+- Laktóza není v Open Food Facts vždy uvedená; pokud chybí, doplň ji sama (kvůli skóre A–E).
 
-B) GitHub Pages — trvalejší, „vlastní" appka
-   1. Založ si účet na https://github.com
-   2. New repository -> název např. "bez-laktozy" -> Create.
-   3. "uploading an existing file" -> nahraj všechny soubory -> Commit.
-   4. Settings -> Pages -> Branch: main -> Save.
-   5. Za chvíli běží na https://TVEUZIVATELSKEJMENO.github.io/bez-laktozy/
+PŘENOS DAT MEZI ZAŘÍZENÍMI (PC → telefon)
+1. Na počítači otevři stejnou adresu appky, přidej produkty.
+2. Nastavení (ozubené kolo) → Stáhnout zálohu → vznikne soubor .json.
+3. Přenes soubor do telefonu (AirDrop, e-mail, cloud).
+4. V telefonu: Nastavení → Nahrát zálohu ze souboru → vyber .json.
+   Telefon zůstává hlavní – nahrání jen doplní/aktualizuje produkty podle jejich ID.
 
-
-KROK 2 — PŘIDAT NA PLOCHU IPHONU
---------------------------------
-1. Odkaz z Kroku 1 otevři v prohlížeči SAFARI (ne v Chrome).
-2. Klepni na ikonu Sdílet (čtvereček se šipkou nahoru).
-3. "Přidat na plochu" -> Přidat.
-4. Na ploše se objeví ikona "LactoSTOP". Spouští se na celou obrazovku.
-
-
-KROK 3 — PŘENÉST DATA, KTERÁ UŽ MÁŠ
------------------------------------
-Data se nepřenášejí sama (nová appka má vlastní úložiště).
-1. Ve staré verzi (v Claude appce) klepni nahoře na ikonu zálohy
-   -> "Zkopírovat zálohu".
-2. V nové appce na ploše klepni na stejnou ikonu zálohy
-   -> vlož text do pole -> "Obnovit ze zálohy".
-Hotovo, produkty i ceny se přenesou.
-
-
-POZNÁMKY
---------
-- Appka funguje i offline. Data jsou uložená jen v tomto zařízení.
-- Zálohu (Krok 3, bod 1) si občas ulož stranou pro jistotu.
+DATA
+- Ukládají se jen v prohlížeči daného zařízení (IndexedDB). Zálohu si občas stáhni.
+- Nepoužívej anonymní/soukromé okno – data by se neuložila.
