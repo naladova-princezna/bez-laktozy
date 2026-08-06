@@ -27,12 +27,15 @@ JAK AKTUALIZOVAT (máš už starší verzi na GitHubu)
 2. Počkej ~1 minutu, než se Pages přegenerují.
 3. Na iPhonu smaž starou ikonu z plochy a přidej ji znovu (obnoví se název, ikona i cache).
 
-SKENOVÁNÍ – co potřebuje
-- Funguje jen přes https (z GitHub Pages ano).
-- Při prvním spuštění povol Safari přístup k FOTOAPARÁTU.
-- Sken i doplnění z Open Food Facts potřebují internet.
+PŘIDÁNÍ PODLE KÓDU – jak funguje
+- Tlačítko skeneru otevře okno "Přidat podle kódu" se dvěma způsoby:
+  1) VYFOTIT: klepni na "Vyfotit čárový kód" → otevře se foťák → vyfoť kód →
+     appka z fotky přečte EAN a doplní údaje. Foť ostře, zblízka a přes celou šířku.
+  2) RUČNĚ: opiš číslo EAN pod čárovým kódem a dej "Najít podle kódu".
+- Doplnění z Open Food Facts potřebuje internet.
 - U některých produktů data v databázi chybí – pak se otevře prázdný formulář a vyplníš ručně.
 - Laktóza není v Open Food Facts vždy uvedená; pokud chybí, doplň ji sama (kvůli skóre A–E).
+- Focení potřebuje povolení fotoaparátu (nativní foťák) – povol při první výzvě.
 
 PŘENOS DAT MEZI ZAŘÍZENÍMI (PC → telefon)
 1. Na počítači otevři stejnou adresu appky, přidej produkty.

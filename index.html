@@ -246,6 +246,11 @@
   #reader{width:100%;min-height:280px;border-radius:16px;overflow:hidden;background:#000}
   #reader video{border-radius:16px}
   .scan-status{text-align:center;color:var(--text-2);font-size:14.5px;margin-top:12px;line-height:1.45}
+  .scan-photo{width:100%;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;background:var(--accent-soft);border:1px solid var(--border);display:grid;place-items:center;position:relative}
+  .scan-photo img{width:100%;height:100%;object-fit:cover}
+  .scan-photo .ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;text-align:center;padding:0 20px}
+  .scan-photo .ph svg{width:40px;height:40px}
+  .scan-or{text-align:center;color:var(--text-3);font-size:13px;font-weight:600;margin:22px 0 2px}
   .manual-ean{margin-top:16px;display:flex;flex-direction:column;gap:10px}
   .manual-ean input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 14px;color:var(--text);outline:none;text-align:center;letter-spacing:.04em}
   .manual-ean input:focus{border-color:var(--accent)}
@@ -403,13 +408,17 @@
 <!-- Scan sheet -->
 <div class="sheet" id="scanSheet">
   <div class="grabber"></div>
-  <div class="sheethead"><button id="scanCancel">Zrušit</button><div class="t">Naskenuj čárový kód</div><button style="opacity:0;pointer-events:none">.</button></div>
+  <div class="sheethead"><button id="scanCancel">Zrušit</button><div class="t">Přidat podle kódu</div><button style="opacity:0;pointer-events:none">.</button></div>
   <div class="sheetbody">
-    <div id="reader"></div>
-    <div class="scan-status" id="scanStatus">Namiř foťák na čárový kód (EAN) produktu.</div>
+    <div class="scan-photo" id="scanPhotoPreview"></div>
+    <button class="btn solid" id="takePhotoBtn" style="margin-top:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:19px;height:19px;vertical-align:-4px;margin-right:6px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.2"/></svg>Vyfotit čárový kód</button>
+    <div class="scan-status" id="scanStatus">Vyfoť čárový kód (EAN) na obalu — ostře a přes celou šířku snímku.</div>
+    <input type="file" id="scanPhotoInput" accept="image/*" capture="environment" class="hidden">
+    <div id="reader" class="hidden"></div>
+    <div class="scan-or">nebo zadej číslo ručně</div>
     <div class="manual-ean">
-      <input id="manualEan" type="text" inputmode="numeric" placeholder="Nejde to? Zadej číslo EAN ručně" enterkeyhint="search">
-      <button class="btn solid" id="manualEanBtn">Najít podle kódu</button>
+      <input id="manualEan" type="text" inputmode="numeric" placeholder="Číslo EAN pod čárovým kódem" enterkeyhint="search">
+      <button class="btn" id="manualEanBtn">Najít podle kódu</button>
     </div>
   </div>
 </div>
@@ -723,41 +732,34 @@
     }).catch(function(){ resolve(null); });
   }); }
 
-  /* ---------- Scanning + Open Food Facts ---------- */
-  var scanner=null, scanning=false;
+  /* ---------- Scanning (photo) + Open Food Facts ---------- */
+  var fileScanner=null;
+  function scanPlaceholder(){ return '<div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a1 1 0 0 1 1-1h2"/><path d="M17 4h2a1 1 0 0 1 1 1v2"/><path d="M20 17v2a1 1 0 0 1-1 1h-2"/><path d="M7 20H5a1 1 0 0 1-1-1v-2"/><path d="M7 8v8M10.5 8v8M14 8v8M17 8v8"/></svg>Vyfoť čárový kód<br>na obalu produktu</div>'; }
   function startScan(){
-    if(typeof Html5Qrcode==="undefined"){ $("manualEan").value=""; $("scanStatus").textContent="Skener se nenačetl — zadej číslo EAN ručně níže."; openSheet($("scanSheet")); return; }
     $("manualEan").value="";
-    $("scanStatus").textContent="Spouštím kameru…";
+    $("scanPhotoPreview").innerHTML=scanPlaceholder();
+    $("scanStatus").textContent="Vyfoť čárový kód (EAN) na obalu — ostře a přes celou šířku snímku.";
     openSheet($("scanSheet"));
+  }
+  function closeScan(){ try{ if(fileScanner) fileScanner.clear(); }catch(e){} fileScanner=null; closeSheet($("scanSheet")); }
+  function decodePhoto(file){
+    try{ var url=URL.createObjectURL(file); $("scanPhotoPreview").innerHTML='<img src="'+url+'" alt="">'; }catch(e){}
+    $("scanStatus").textContent="Čtu kód z fotky…";
+    if(typeof Html5Qrcode==="undefined"){ $("scanStatus").textContent="Čtečka se nenačetla — zadej číslo EAN ručně níže."; return; }
     var fmts; try{ var F=window.Html5QrcodeSupportedFormats; fmts=[F.EAN_13,F.EAN_8,F.UPC_A,F.UPC_E,F.CODE_128]; }catch(e){ fmts=undefined; }
-    try{ scanner=new Html5Qrcode("reader",{formatsToSupport:fmts, experimentalFeatures:{useBarCodeDetectorIfSupported:true}, verbose:false}); }
-    catch(e){ scanner=null; $("scanStatus").textContent="Skener nejde spustit — zadej číslo EAN ručně níže."; return; }
-    scanning=true;
-    // Wide scanning strip works best for 1D barcodes (EAN)
-    var config={fps:12, aspectRatio:1.0, disableFlip:true, qrbox:function(vw,vh){ var w=Math.max(180,Math.min(vw-16,vw*0.92)); var h=Math.round(Math.min(w*0.55,vh*0.6)); return {width:Math.round(w),height:h}; }};
-    var onDecode=function(text){ if(!scanning) return; scanning=false; $("scanStatus").textContent="Načítám z Open Food Facts…"; stopScan(function(){ lookupOFF((text||"").replace(/\D/g,"")); }); };
-    var ready=function(){ $("scanStatus").textContent="Namiř foťák na čárový kód (EAN). Drž ho vodorovně přes celou šířku."; };
-    var fail=function(){ scanning=false; try{ if(scanner) scanner.clear(); }catch(e){} scanner=null; $("scanStatus").textContent="Kameru se nepodařilo spustit (zkontroluj povolení fotoaparátu v Safari). Zadej číslo EAN ručně níže."; };
-    var startWith=function(cam){ return scanner.start(cam,config,onDecode,function(){}); };
-    // iOS: facingMode is most reliable; fall back to explicit back-camera id
-    startWith({facingMode:"environment"}).then(ready).catch(function(){
-      try{
-        Html5Qrcode.getCameras().then(function(cams){
-          if(!cams||!cams.length){ fail(); return; }
-          var camId=cams[cams.length-1].id;
-          for(var i=0;i<cams.length;i++){ if(/back|rear|zad|environment/i.test(cams[i].label||"")){ camId=cams[i].id; break; } }
-          startWith(camId).then(ready).catch(fail);
-        }).catch(fail);
-      }catch(e){ fail(); }
+    try{ if(fileScanner){ try{fileScanner.clear();}catch(_){} } fileScanner=new Html5Qrcode("reader",{formatsToSupport:fmts,verbose:false}); }
+    catch(e){ $("scanStatus").textContent="Čtečku se nepodařilo spustit — zadej číslo EAN ručně níže."; return; }
+    fileScanner.scanFile(file,false).then(function(text){
+      var ean=(text||"").replace(/\D/g,"");
+      try{fileScanner.clear();}catch(_){} fileScanner=null;
+      if(ean.length<6){ $("scanStatus").textContent="Kód se nepodařilo přečíst. Zkus to vyfotit znovu, nebo zadej číslo ručně."; return; }
+      closeScan(); lookupOFF(ean);
+    }).catch(function(){
+      try{ if(fileScanner) fileScanner.clear(); }catch(_){} fileScanner=null;
+      $("scanStatus").textContent="Na fotce se nepodařilo najít čárový kód. Vyfoť ho zblízka, ostře a přes celou šířku — nebo zadej číslo ručně.";
     });
   }
-  function stopScan(after){
-    var done=function(){ try{ if(scanner) scanner.clear(); }catch(e){} scanner=null; closeSheet($("scanSheet")); if(after) after(); };
-    if(scanner){ try{ scanner.stop().then(done).catch(done); }catch(e){ done(); } }
-    else done();
-  }
-  function manualLookup(){ var v=($("manualEan").value||"").replace(/\D/g,""); if(v.length<6){ toast("Zadej platné číslo EAN (aspoň 6 číslic)"); return; } scanning=false; $("scanStatus").textContent="Načítám z Open Food Facts…"; stopScan(function(){ lookupOFF(v); }); }
+  function manualLookup(){ var v=($("manualEan").value||"").replace(/\D/g,""); if(v.length<6){ toast("Zadej platné číslo EAN (aspoň 6 číslic)"); return; } closeScan(); lookupOFF(v); }
   function guessCat(tags){ tags=(tags||[]).join(" ");
     if(/yogurt/.test(tags)) return "jogurt"; if(/cheese/.test(tags)) return "syr";
     if(/butter|margarin/.test(tags)) return "maslo"; if(/cream/.test(tags)) return "smetana";
@@ -915,7 +917,9 @@
 
   $("scanTopBtn").addEventListener("click",startScan);
   $("sheetScanBtn").addEventListener("click",function(){ closeSheet($("productSheet")); setTimeout(startScan,120); });
-  $("scanCancel").addEventListener("click",function(){ scanning=false; stopScan(); });
+  $("scanCancel").addEventListener("click",closeScan);
+  $("takePhotoBtn").addEventListener("click",function(){ $("scanPhotoInput").click(); });
+  $("scanPhotoInput").addEventListener("change",function(){ var f=this.files&&this.files[0]; if(f) decodePhoto(f); this.value=""; });
   $("manualEanBtn").addEventListener("click",manualLookup);
   $("manualEan").addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); manualLookup(); } });
 
@@ -944,7 +948,7 @@
   $("scrim").addEventListener("click",function(){
     if($("confirmDialog").classList.contains("show")){ closeConfirm(); return; }
     ["productSheet","priceSheet","sortSheet","filterSheet","basketSheet","settingsSheet"].forEach(function(id){ if($(id).classList.contains("show")) closeSheet($(id)); });
-    if($("scanSheet").classList.contains("show")){ scanning=false; stopScan(); }
+    if($("scanSheet").classList.contains("show")) closeScan();
   });
 
   $("searchInput").addEventListener("input",function(){ query=this.value; renderList(); });
