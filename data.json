@@ -10,21 +10,35 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787140,
+  "created": 1786478838993,
   "prices": [
    {
     "id": "pr_0000",
     "store": "Rohlík",
     "price": 49.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    },
    {
     "id": "pr_0001",
     "store": "Globus",
     "price": 44.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0002",
+    "store": "Tesco",
+    "price": 48.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0003",
+    "store": "Košík",
+    "price": 36.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
@@ -39,21 +53,35 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787141,
+  "created": 1786478838994,
   "prices": [
    {
     "id": "pr_0010",
     "store": "Rohlík",
     "price": 52.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    },
    {
     "id": "pr_0011",
     "store": "Globus",
     "price": 49.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0012",
+    "store": "Tesco",
+    "price": 53.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0013",
+    "store": "Košík",
+    "price": 39.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
@@ -68,21 +96,21 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787142,
+  "created": 1786478838995,
   "prices": [
    {
     "id": "pr_0020",
     "store": "Rohlík",
     "price": 23.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    },
    {
     "id": "pr_0021",
     "store": "Globus",
     "price": 21.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
@@ -97,14 +125,21 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787143,
+  "created": 1786478838996,
   "prices": [
    {
     "id": "pr_0030",
     "store": "Rohlík",
     "price": 47.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0031",
+    "store": "Košík",
+    "price": 44.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
@@ -119,14 +154,21 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787144,
+  "created": 1786478838997,
   "prices": [
    {
     "id": "pr_0040",
     "store": "Globus",
     "price": 18.9,
     "note": "akce",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0041",
+    "store": "Košík",
+    "price": 22.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
@@ -141,19 +183,55 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787145,
+  "created": 1786478838998,
   "prices": [
    {
     "id": "pr_0050",
     "store": "Rohlík",
     "price": 33.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0051",
+    "store": "Tesco",
+    "price": 33.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0052",
+    "store": "Košík",
+    "price": 33.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
   "id": "p_seed006",
+  "name": "Trvanlivé mléko plnotučné 3,5% bez laktózy",
+  "brand": "Pragolaktos",
+  "category": "mleko",
+  "desc": "",
+  "weight": 500,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478838999,
+  "prices": [
+   {
+    "id": "pr_0060",
+    "store": "Tesco",
+    "price": 19.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed007",
   "name": "Trvanlivé mléko polotučné 1,5% bez laktózy",
   "brand": "Miil",
   "category": "mleko",
@@ -163,19 +241,19 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787146,
+  "created": 1786478839000,
   "prices": [
    {
-    "id": "pr_0060",
+    "id": "pr_0070",
     "store": "Rohlík",
     "price": 18.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed007",
+  "id": "p_seed008",
   "name": "BIO čerstvé alpské mléko polotučné bez laktózy",
   "brand": "Berchtesgadener Land",
   "category": "mleko",
@@ -185,19 +263,19 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787147,
+  "created": 1786478839001,
   "prices": [
    {
-    "id": "pr_0070",
+    "id": "pr_0080",
     "store": "Rohlík",
     "price": 60.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed008",
+  "id": "p_seed009",
   "name": "BIO čerstvé alpské mléko plnotučné bez laktózy",
   "brand": "Berchtesgadener Land",
   "category": "mleko",
@@ -207,19 +285,26 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787148,
+  "created": 1786478839002,
   "prices": [
    {
-    "id": "pr_0080",
+    "id": "pr_0090",
     "store": "Rohlík",
     "price": 69.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0091",
+    "store": "Košík",
+    "price": 69.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed009",
+  "id": "p_seed010",
   "name": "Mléko 1,5% UHT bez laktózy",
   "brand": "Free (Billa)",
   "category": "mleko",
@@ -229,19 +314,19 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787149,
+  "created": 1786478839003,
   "prices": [
    {
-    "id": "pr_0090",
+    "id": "pr_0100",
     "store": "Billa",
     "price": 44.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed010",
+  "id": "p_seed011",
   "name": "Mléko 3,5% UHT bez laktózy",
   "brand": "Free (Billa)",
   "category": "mleko",
@@ -251,19 +336,41 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787150,
+  "created": 1786478839004,
   "prices": [
    {
-    "id": "pr_0100",
+    "id": "pr_0110",
     "store": "Billa",
     "price": 49.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed011",
+  "id": "p_seed012",
+  "name": "Free From mléko UHT polotučné 1,5% bez laktózy",
+  "brand": "Tesco",
+  "category": "mleko",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839005,
+  "prices": [
+   {
+    "id": "pr_0120",
+    "store": "Tesco",
+    "price": 18.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed013",
   "name": "Protein drink čokoláda bez laktózy",
   "brand": "Zott",
   "category": "napoj",
@@ -273,19 +380,19 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787151,
+  "created": 1786478839006,
   "prices": [
    {
-    "id": "pr_0110",
+    "id": "pr_0130",
     "store": "Rohlík",
     "price": 32.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed012",
+  "id": "p_seed014",
   "name": "Protein drink vanilka bez laktózy",
   "brand": "Zott",
   "category": "napoj",
@@ -295,19 +402,532 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787152,
+  "created": 1786478839007,
   "prices": [
    {
-    "id": "pr_0120",
+    "id": "pr_0140",
     "store": "Rohlík",
     "price": 32.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed013",
+  "id": "p_seed015",
+  "name": "Foodie Vanilla nápoj",
+  "brand": "Ehrmann",
+  "category": "napoj",
+  "desc": "",
+  "weight": 400,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839008,
+  "prices": [
+   {
+    "id": "pr_0150",
+    "store": "Tesco",
+    "price": 79.9,
+    "note": "Clubcard 69,90",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed016",
+  "name": "Bezlaktózový nápoj s mlékem, čokoláda",
+  "brand": "Just Food",
+  "category": "napoj",
+  "desc": "",
+  "weight": 500,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839009,
+  "prices": [
+   {
+    "id": "pr_0160",
+    "store": "Tesco",
+    "price": 99.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed017",
+  "name": "Bezlaktózový nápoj s mlékem, sušenka",
+  "brand": "Just Food",
+  "category": "napoj",
+  "desc": "",
+  "weight": 500,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839010,
+  "prices": [
+   {
+    "id": "pr_0170",
+    "store": "Tesco",
+    "price": 99.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0171",
+    "store": "Košík",
+    "price": 99.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed018",
+  "name": "Bezlaktózový nápoj s mlékem, lesní plody",
+  "brand": "Just Food",
+  "category": "napoj",
+  "desc": "",
+  "weight": 500,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839011,
+  "prices": [
+   {
+    "id": "pr_0180",
+    "store": "Tesco",
+    "price": 99.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed019",
+  "name": "Nutričně vyvážený nápoj, čokoláda",
+  "brand": "yfood",
+  "category": "napoj",
+  "desc": "",
+  "weight": 500,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839012,
+  "prices": [
+   {
+    "id": "pr_0190",
+    "store": "Tesco",
+    "price": 119.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed020",
+  "name": "Nutričně vyvážený nápoj, maliny a jahody",
+  "brand": "yfood",
+  "category": "napoj",
+  "desc": "",
+  "weight": 500,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839013,
+  "prices": [
+   {
+    "id": "pr_0200",
+    "store": "Tesco",
+    "price": 119.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed021",
+  "name": "Nutričně vyvážený nápoj, vanilka",
+  "brand": "yfood",
+  "category": "napoj",
+  "desc": "",
+  "weight": 500,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839014,
+  "prices": [
+   {
+    "id": "pr_0210",
+    "store": "Tesco",
+    "price": 119.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed022",
+  "name": "Free From jogurtový nápoj jahodový bez laktózy",
+  "brand": "Tesco",
+  "category": "napoj",
+  "desc": "",
+  "weight": 300,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839015,
+  "prices": [
+   {
+    "id": "pr_0220",
+    "store": "Tesco",
+    "price": 28.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed023",
+  "name": "Free From jogurtový nápoj broskvovo-mangový bez laktózy",
+  "brand": "Tesco",
+  "category": "napoj",
+  "desc": "",
+  "weight": 300,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839016,
+  "prices": [
+   {
+    "id": "pr_0230",
+    "store": "Tesco",
+    "price": 28.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed024",
+  "name": "Ovesný nápoj",
+  "brand": "Alpro",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839017,
+  "prices": [
+   {
+    "id": "pr_0240",
+    "store": "Tesco",
+    "price": 92.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed025",
+  "name": "High Protein sójový nápoj čokoláda",
+  "brand": "Alpro",
+  "category": "napoj",
+  "desc": "",
+  "weight": 250,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839018,
+  "prices": [
+   {
+    "id": "pr_0250",
+    "store": "Tesco",
+    "price": 45.9,
+    "note": "Clubcard 34,90",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed026",
+  "name": "High Protein sójový nápoj karamel a káva",
+  "brand": "Alpro",
+  "category": "napoj",
+  "desc": "",
+  "weight": 250,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839019,
+  "prices": [
+   {
+    "id": "pr_0260",
+    "store": "Tesco",
+    "price": 45.9,
+    "note": "Clubcard 34,90",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed027",
+  "name": "Mandlový nápoj neslazený",
+  "brand": "Tesco",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839020,
+  "prices": [
+   {
+    "id": "pr_0270",
+    "store": "Tesco",
+    "price": 24.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed028",
+  "name": "Sójový nápoj neslazený",
+  "brand": "Tesco",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839021,
+  "prices": [
+   {
+    "id": "pr_0280",
+    "store": "Tesco",
+    "price": 24.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed029",
+  "name": "Sójový nápoj slazený",
+  "brand": "Tesco",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839022,
+  "prices": [
+   {
+    "id": "pr_0290",
+    "store": "Tesco",
+    "price": 24.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed030",
+  "name": "Kokosový nápoj neslazený",
+  "brand": "Tesco",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839023,
+  "prices": [
+   {
+    "id": "pr_0300",
+    "store": "Tesco",
+    "price": 24.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed031",
+  "name": "Kokosový nápoj slazený",
+  "brand": "Tesco",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839024,
+  "prices": [
+   {
+    "id": "pr_0310",
+    "store": "Tesco",
+    "price": 24.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed032",
+  "name": "Barista Edition ovesný nápoj",
+  "brand": "Oatly",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839025,
+  "prices": [
+   {
+    "id": "pr_0320",
+    "store": "Tesco",
+    "price": 75.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed033",
+  "name": "Barista Edition ovesný nápoj",
+  "brand": "Oatly",
+  "category": "napoj",
+  "desc": "",
+  "weight": 500,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839026,
+  "prices": [
+   {
+    "id": "pr_0330",
+    "store": "Tesco",
+    "price": 53.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed034",
+  "name": "BIO ovesný nápoj",
+  "brand": "Oatly",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839027,
+  "prices": [
+   {
+    "id": "pr_0340",
+    "store": "Tesco",
+    "price": 75.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed035",
+  "name": "Ovesný nápoj 1,5% tuku",
+  "brand": "Oatly",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839028,
+  "prices": [
+   {
+    "id": "pr_0350",
+    "store": "Tesco",
+    "price": 75.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed036",
+  "name": "Ovesný nápoj čokoládový",
+  "brand": "Oatly",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839029,
+  "prices": [
+   {
+    "id": "pr_0360",
+    "store": "Tesco",
+    "price": 75.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed037",
+  "name": "Ovesný nápoj vanilkový",
+  "brand": "Oatly",
+  "category": "napoj",
+  "desc": "",
+  "weight": 1000,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839030,
+  "prices": [
+   {
+    "id": "pr_0370",
+    "store": "Tesco",
+    "price": 75.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed038",
   "name": "Jogurt řeckého typu Lacto Zero (různé příchutě)",
   "brand": "Ehrmann",
   "category": "jogurt",
@@ -317,20 +937,27 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787153,
+  "created": 1786478839031,
   "prices": [
    {
-    "id": "pr_0130",
+    "id": "pr_0380",
     "store": "Globus",
     "price": 25.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0381",
+    "store": "Košík",
+    "price": 29.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed014",
-  "name": "Jogurt bílý bez laktózy",
+  "id": "p_seed039",
+  "name": "Jogurt bílý krémový bez laktózy s kulturou BiFi",
   "brand": "Hollandia",
   "category": "jogurt",
   "desc": "",
@@ -339,19 +966,91 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787154,
+  "created": 1786478839032,
   "prices": [
    {
-    "id": "pr_0140",
+    "id": "pr_0390",
     "store": "Globus",
     "price": 17.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0391",
+    "store": "Tesco",
+    "price": 18.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0392",
+    "store": "Košík",
+    "price": 22.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed015",
+  "id": "p_seed040",
+  "name": "Jogurt bílý krémový bez laktózy s kulturou BiFi",
+  "brand": "Hollandia",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 400,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839033,
+  "prices": [
+   {
+    "id": "pr_0400",
+    "store": "Tesco",
+    "price": 34.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0401",
+    "store": "Košík",
+    "price": 37.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed041",
+  "name": "Jogurt jahoda krémový bez laktózy",
+  "brand": "Hollandia",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 180,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839034,
+  "prices": [
+   {
+    "id": "pr_0410",
+    "store": "Tesco",
+    "price": 21.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0411",
+    "store": "Košík",
+    "price": 22.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed042",
   "name": "Jogobella jogurt bez laktózy (různé příchutě)",
   "brand": "Zott",
   "category": "jogurt",
@@ -361,19 +1060,26 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787155,
+  "created": 1786478839035,
   "prices": [
    {
-    "id": "pr_0150",
+    "id": "pr_0420",
     "store": "Globus",
     "price": 17.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0421",
+    "store": "Tesco",
+    "price": 18.5,
+    "note": "Clubcard 10,90",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed016",
+  "id": "p_seed043",
   "name": "Jogurt bílý s bifidokulturou bez laktózy",
   "brand": "Free (Billa)",
   "category": "jogurt",
@@ -383,19 +1089,92 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787156,
+  "created": 1786478839036,
   "prices": [
    {
-    "id": "pr_0160",
+    "id": "pr_0430",
     "store": "Billa",
     "price": 17.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed017",
+  "id": "p_seed044",
+  "name": "Bílá bezlaktózová (jogurt)",
+  "brand": "Activia",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 165,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839037,
+  "prices": [
+   {
+    "id": "pr_0440",
+    "store": "Tesco",
+    "price": 25.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0441",
+    "store": "Košík",
+    "price": 22.9,
+    "note": "akce",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed045",
+  "name": "Free From bílý jogurt bez laktózy",
+  "brand": "Tesco",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 180,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839038,
+  "prices": [
+   {
+    "id": "pr_0450",
+    "store": "Tesco",
+    "price": 16.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed046",
+  "name": "Free From řecký jogurt natural bez laktózy",
+  "brand": "Tesco",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839039,
+  "prices": [
+   {
+    "id": "pr_0460",
+    "store": "Tesco",
+    "price": 18.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed047",
   "name": "Gouda plátky bez laktózy",
   "brand": "Moravia DeLacto",
   "category": "syr",
@@ -405,26 +1184,33 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787157,
+  "created": 1786478839040,
   "prices": [
    {
-    "id": "pr_0170",
+    "id": "pr_0470",
     "store": "Rohlík",
     "price": 30.9,
     "note": "akce",
-    "ts": 1786445787140
+    "ts": 1786478838993
    },
    {
-    "id": "pr_0171",
+    "id": "pr_0471",
     "store": "Globus",
     "price": 42.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0472",
+    "store": "Košík",
+    "price": 49.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed018",
+  "id": "p_seed048",
   "name": "Mozzarella Lactose Free",
   "brand": "Galbani",
   "category": "syr",
@@ -434,26 +1220,33 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787158,
+  "created": 1786478839041,
   "prices": [
    {
-    "id": "pr_0180",
+    "id": "pr_0480",
     "store": "Rohlík",
     "price": 49.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    },
    {
-    "id": "pr_0181",
+    "id": "pr_0481",
     "store": "Globus",
     "price": 51.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0482",
+    "store": "Košík",
+    "price": 36.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed019",
+  "id": "p_seed049",
   "name": "Nadýchaná bez laktózy",
   "brand": "Lučina",
   "category": "syr",
@@ -463,26 +1256,40 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787159,
+  "created": 1786478839042,
   "prices": [
    {
-    "id": "pr_0190",
+    "id": "pr_0490",
     "store": "Rohlík",
     "price": 53.4,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    },
    {
-    "id": "pr_0191",
+    "id": "pr_0491",
     "store": "Globus",
     "price": 56.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0492",
+    "store": "Tesco",
+    "price": 51.9,
+    "note": "Clubcard 41,90",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0493",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed020",
+  "id": "p_seed050",
   "name": "Smetanový sýr bez laktózy",
   "brand": "Philadelphia",
   "category": "syr",
@@ -492,27 +1299,34 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787160,
+  "created": 1786478839043,
   "prices": [
    {
-    "id": "pr_0200",
+    "id": "pr_0500",
     "store": "Rohlík",
     "price": 54.9,
     "note": "akce",
-    "ts": 1786445787140
+    "ts": 1786478838993
    },
    {
-    "id": "pr_0201",
+    "id": "pr_0501",
     "store": "Globus",
     "price": 69.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0502",
+    "store": "Košík",
+    "price": 49.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed021",
-  "name": "Jihočeský cottage bez laktózy",
+  "id": "p_seed051",
+  "name": "Jihočeský cottage natur bez laktózy",
   "brand": "Madeta",
   "category": "syr",
   "desc": "",
@@ -521,26 +1335,40 @@
   "lactose": 0.01,
   "image": null,
   "barcode": null,
-  "created": 1786445787161,
+  "created": 1786478839044,
   "prices": [
    {
-    "id": "pr_0210",
+    "id": "pr_0510",
     "store": "Rohlík",
     "price": 35.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    },
    {
-    "id": "pr_0211",
+    "id": "pr_0511",
     "store": "Globus",
     "price": 32.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0512",
+    "store": "Tesco",
+    "price": 35.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0513",
+    "store": "Košík",
+    "price": 32.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed022",
+  "id": "p_seed052",
   "name": "Cottage sýr bez laktózy",
   "brand": "Meggle",
   "category": "syr",
@@ -550,19 +1378,26 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787162,
+  "created": 1786478839045,
   "prices": [
    {
-    "id": "pr_0220",
+    "id": "pr_0520",
     "store": "Rohlík",
     "price": 50.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0521",
+    "store": "Košík",
+    "price": 32.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed023",
+  "id": "p_seed053",
   "name": "Mozzarella bez laktózy",
   "brand": "Miil",
   "category": "syr",
@@ -572,19 +1407,19 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787163,
+  "created": 1786478839046,
   "prices": [
    {
-    "id": "pr_0230",
+    "id": "pr_0530",
     "store": "Rohlík",
     "price": 33.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed024",
+  "id": "p_seed054",
   "name": "Camembert bez laktózy",
   "brand": "Miil",
   "category": "syr",
@@ -594,19 +1429,19 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787164,
+  "created": 1786478839047,
   "prices": [
    {
-    "id": "pr_0240",
+    "id": "pr_0540",
     "store": "Rohlík",
     "price": 33.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed025",
+  "id": "p_seed055",
   "name": "Jihočeská niva bez laktózy 45%",
   "brand": "Madeta",
   "category": "syr",
@@ -616,19 +1451,26 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787165,
+  "created": 1786478839048,
   "prices": [
    {
-    "id": "pr_0250",
+    "id": "pr_0550",
     "store": "Rohlík",
     "price": 39.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0551",
+    "store": "Tesco",
+    "price": 39.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed026",
+  "id": "p_seed056",
   "name": "Tatranský rival bez laktózy",
   "brand": "Tami",
   "category": "syr",
@@ -638,19 +1480,19 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787166,
+  "created": 1786478839049,
   "prices": [
    {
-    "id": "pr_0260",
+    "id": "pr_0560",
     "store": "Rohlík",
     "price": 40.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed027",
+  "id": "p_seed057",
   "name": "Gouda bez laktózy",
   "brand": "Liptov",
   "category": "syr",
@@ -660,19 +1502,33 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787167,
+  "created": 1786478839050,
   "prices": [
    {
-    "id": "pr_0270",
+    "id": "pr_0570",
     "store": "Rohlík",
     "price": 48.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0571",
+    "store": "Tesco",
+    "price": 49.9,
+    "note": "Clubcard 39,90",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0572",
+    "store": "Košík",
+    "price": 36.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed028",
+  "id": "p_seed058",
   "name": "Hermelín bez laktózy",
   "brand": "Sedlčanský",
   "category": "syr",
@@ -682,19 +1538,33 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787168,
+  "created": 1786478839051,
   "prices": [
    {
-    "id": "pr_0280",
+    "id": "pr_0580",
     "store": "Rohlík",
     "price": 50.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0581",
+    "store": "Tesco",
+    "price": 49.9,
+    "note": "Clubcard 39,90",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0582",
+    "store": "Košík",
+    "price": 26.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed029",
+  "id": "p_seed059",
   "name": "Tvarohový sýr s bylinkami bez laktózy",
   "brand": "Almette",
   "category": "syr",
@@ -704,19 +1574,26 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787169,
+  "created": 1786478839052,
   "prices": [
    {
-    "id": "pr_0290",
+    "id": "pr_0590",
     "store": "Rohlík",
     "price": 50.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0591",
+    "store": "Košík",
+    "price": 59.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed030",
+  "id": "p_seed060",
   "name": "Lactose mínus tavený sýr",
   "brand": "Encián",
   "category": "syr",
@@ -726,19 +1603,26 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787170,
+  "created": 1786478839053,
   "prices": [
    {
-    "id": "pr_0300",
+    "id": "pr_0600",
     "store": "Globus",
     "price": 40.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0601",
+    "store": "Košík",
+    "price": 47.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed031",
+  "id": "p_seed061",
   "name": "Bez laktózy tavený sýr 8 ks",
   "brand": "Veselá Kráva",
   "category": "syr",
@@ -748,19 +1632,33 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787171,
+  "created": 1786478839054,
   "prices": [
    {
-    "id": "pr_0310",
+    "id": "pr_0610",
     "store": "Globus",
     "price": 59.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0611",
+    "store": "Tesco",
+    "price": 62.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0612",
+    "store": "Košík",
+    "price": 52.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed032",
+  "id": "p_seed062",
   "name": "Jihočeský tvaroh polotučný bez laktózy",
   "brand": "Madeta",
   "category": "syr",
@@ -770,19 +1668,33 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787172,
+  "created": 1786478839055,
   "prices": [
    {
-    "id": "pr_0320",
+    "id": "pr_0620",
     "store": "Globus",
     "price": 39.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0621",
+    "store": "Tesco",
+    "price": 39.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0622",
+    "store": "Košík",
+    "price": 38.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed033",
+  "id": "p_seed063",
   "name": "Jihočeské pomazánkové tradiční bez laktózy",
   "brand": "Madeta",
   "category": "syr",
@@ -792,19 +1704,208 @@
   "lactose": 0.01,
   "image": null,
   "barcode": null,
-  "created": 1786445787173,
+  "created": 1786478839056,
   "prices": [
    {
-    "id": "pr_0330",
+    "id": "pr_0630",
     "store": "Globus",
     "price": 38.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0631",
+    "store": "Tesco",
+    "price": 41.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0632",
+    "store": "Košík",
+    "price": 41.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed034",
+  "id": "p_seed064",
+  "name": "Free From Mozzarella bez laktózy",
+  "brand": "Tesco",
+  "category": "syr",
+  "desc": "",
+  "weight": 125,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839057,
+  "prices": [
+   {
+    "id": "pr_0640",
+    "store": "Tesco",
+    "price": 36.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed065",
+  "name": "Free From Gouda bez laktózy",
+  "brand": "Tesco",
+  "category": "syr",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839058,
+  "prices": [
+   {
+    "id": "pr_0650",
+    "store": "Tesco",
+    "price": 63.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed066",
+  "name": "Free From sýr typu ementál bez laktózy",
+  "brand": "Tesco",
+  "category": "syr",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839059,
+  "prices": [
+   {
+    "id": "pr_0660",
+    "store": "Tesco",
+    "price": 63.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed067",
+  "name": "Mascarpone Lactose Free",
+  "brand": "Castelli",
+  "category": "syr",
+  "desc": "",
+  "weight": 250,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839060,
+  "prices": [
+   {
+    "id": "pr_0670",
+    "store": "Tesco",
+    "price": 104.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed068",
+  "name": "LactiNO Bánovecké syrové nitě neúdené",
+  "brand": "Milsy",
+  "category": "syr",
+  "desc": "",
+  "weight": 90,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839061,
+  "prices": [
+   {
+    "id": "pr_0680",
+    "store": "Tesco",
+    "price": 53.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0681",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed069",
+  "name": "LactiNO Bánovecké syrové nitě údené",
+  "brand": "Milsy",
+  "category": "syr",
+  "desc": "",
+  "weight": 90,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839062,
+  "prices": [
+   {
+    "id": "pr_0690",
+    "store": "Tesco",
+    "price": 53.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0691",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed070",
+  "name": "Lacti-NO Parenica neúdená",
+  "brand": "Milsy",
+  "category": "syr",
+  "desc": "",
+  "weight": 110,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839063,
+  "prices": [
+   {
+    "id": "pr_0700",
+    "store": "Tesco",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0701",
+    "store": "Košík",
+    "price": 69.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed071",
   "name": "Smetana na vaření 10% bez laktózy",
   "brand": "Meggle",
   "category": "smetana",
@@ -814,19 +1915,33 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787174,
+  "created": 1786478839064,
   "prices": [
    {
-    "id": "pr_0340",
+    "id": "pr_0710",
     "store": "Globus",
     "price": 36.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0711",
+    "store": "Tesco",
+    "price": 39.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0712",
+    "store": "Košík",
+    "price": 24.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed035",
+  "id": "p_seed072",
   "name": "Smetana ke šlehání 30% bez laktózy",
   "brand": "Meggle",
   "category": "smetana",
@@ -836,19 +1951,55 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787175,
+  "created": 1786478839065,
   "prices": [
    {
-    "id": "pr_0350",
+    "id": "pr_0720",
     "store": "Globus",
     "price": 49.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0721",
+    "store": "Tesco",
+    "price": 51.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0722",
+    "store": "Košík",
+    "price": 36.9,
+    "note": "akce",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed036",
+  "id": "p_seed073",
+  "name": "Šlehačka ve spreji 22% bez laktózy",
+  "brand": "Meggle",
+  "category": "smetana",
+  "desc": "",
+  "weight": 250,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839066,
+  "prices": [
+   {
+    "id": "pr_0730",
+    "store": "Tesco",
+    "price": 84.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed074",
   "name": "Smetana 10% bez laktózy",
   "brand": "Pragolaktos",
   "category": "smetana",
@@ -858,19 +2009,62 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787176,
+  "created": 1786478839067,
   "prices": [
    {
-    "id": "pr_0360",
+    "id": "pr_0740",
     "store": "Globus",
     "price": 26.9,
     "note": "akce",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0741",
+    "store": "Tesco",
+    "price": 47.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0742",
+    "store": "Košík",
+    "price": 45.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed037",
+  "id": "p_seed075",
+  "name": "Jihočeská tradiční zakysaná smetana 15% bez laktózy",
+  "brand": "Madeta",
+  "category": "smetana",
+  "desc": "",
+  "weight": 180,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839068,
+  "prices": [
+   {
+    "id": "pr_0750",
+    "store": "Tesco",
+    "price": 35.9,
+    "note": "Clubcard 26,90",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0751",
+    "store": "Košík",
+    "price": 34.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed076",
   "name": "Máslo bez laktózy",
   "brand": "Moravia DeLacto",
   "category": "maslo",
@@ -880,19 +2074,26 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787177,
+  "created": 1786478839069,
   "prices": [
    {
-    "id": "pr_0370",
+    "id": "pr_0760",
     "store": "Globus",
     "price": 49.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0761",
+    "store": "Košík",
+    "price": 52.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed038",
+  "id": "p_seed077",
   "name": "Máslo bez laktózy",
   "brand": "Free (Billa)",
   "category": "maslo",
@@ -902,36 +2103,908 @@
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787178,
+  "created": 1786478839070,
   "prices": [
    {
-    "id": "pr_0380",
+    "id": "pr_0770",
     "store": "Billa",
     "price": 69.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
    }
   ]
  },
  {
-  "id": "p_seed039",
-  "name": "Lipánek smetanový bez laktózy",
+  "id": "p_seed078",
+  "name": "100% rostlinná alternativa másla, neslaná",
+  "brand": "Rama",
+  "category": "maslo",
+  "desc": "",
+  "weight": 250,
+  "unit": "g",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839071,
+  "prices": [
+   {
+    "id": "pr_0780",
+    "store": "Tesco",
+    "price": 64.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed079",
+  "name": "Lipánek Maxi tradiční smetanový bez laktózy",
   "brand": "Madeta",
   "category": "dezert",
+  "desc": "",
+  "weight": 130,
+  "unit": "g",
+  "lactose": 0.01,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839072,
+  "prices": [
+   {
+    "id": "pr_0790",
+    "store": "Globus",
+    "price": 24.9,
+    "note": "",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0791",
+    "store": "Tesco",
+    "price": 25.9,
+    "note": "Clubcard 21,90",
+    "ts": 1786478838993
+   },
+   {
+    "id": "pr_0792",
+    "store": "Košík",
+    "price": 26.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed080",
+  "name": "Pudding Vanilla",
+  "brand": "Ehrmann High Protein",
+  "category": "dezert",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839073,
+  "prices": [
+   {
+    "id": "pr_0800",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed081",
+  "name": "Pudding Caramel",
+  "brand": "Ehrmann High Protein",
+  "category": "dezert",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839074,
+  "prices": [
+   {
+    "id": "pr_0810",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed082",
+  "name": "Pudding Chocolate & Topping",
+  "brand": "Ehrmann High Protein",
+  "category": "dezert",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839075,
+  "prices": [
+   {
+    "id": "pr_0820",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed083",
+  "name": "Pudding Choco",
+  "brand": "Ehrmann High Protein",
+  "category": "dezert",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839076,
+  "prices": [
+   {
+    "id": "pr_0830",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed084",
+  "name": "Pudding White Choc style",
+  "brand": "Ehrmann High Protein",
+  "category": "dezert",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839077,
+  "prices": [
+   {
+    "id": "pr_0840",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed085",
+  "name": "Pudding & Topping Double Choc",
+  "brand": "Ehrmann High Protein",
+  "category": "dezert",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839078,
+  "prices": [
+   {
+    "id": "pr_0850",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed086",
+  "name": "Joghurt Stracciatella",
+  "brand": "Ehrmann High Protein",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839079,
+  "prices": [
+   {
+    "id": "pr_0860",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed087",
+  "name": "Mousse Pistácie",
+  "brand": "Ehrmann High Protein",
+  "category": "dezert",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839080,
+  "prices": [
+   {
+    "id": "pr_0870",
+    "store": "Košík",
+    "price": 57.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed088",
+  "name": "Drink Pistácie",
+  "brand": "Ehrmann High Protein",
+  "category": "napoj",
+  "desc": "",
+  "weight": 250,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839081,
+  "prices": [
+   {
+    "id": "pr_0880",
+    "store": "Košík",
+    "price": 52.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed089",
+  "name": "Caffè Latte",
+  "brand": "Ehrmann High Protein",
+  "category": "napoj",
+  "desc": "",
+  "weight": 250,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839082,
+  "prices": [
+   {
+    "id": "pr_0890",
+    "store": "Košík",
+    "price": 50.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed090",
+  "name": "Caffè Latte Caramel Style",
+  "brand": "Ehrmann High Protein",
+  "category": "napoj",
+  "desc": "",
+  "weight": 250,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839083,
+  "prices": [
+   {
+    "id": "pr_0900",
+    "store": "Košík",
+    "price": 50.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed091",
+  "name": "Foodie Pistácie nápoj",
+  "brand": "Ehrmann",
+  "category": "napoj",
+  "desc": "",
+  "weight": 400,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839084,
+  "prices": [
+   {
+    "id": "pr_0910",
+    "store": "Košík",
+    "price": 59.9,
+    "note": "akce",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed092",
+  "name": "Foodie Čokoláda nápoj",
+  "brand": "Ehrmann",
+  "category": "napoj",
+  "desc": "",
+  "weight": 400,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839085,
+  "prices": [
+   {
+    "id": "pr_0920",
+    "store": "Košík",
+    "price": 59.9,
+    "note": "akce",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed093",
+  "name": "Skyr 0,1% tradiční islandský bez laktózy",
+  "brand": "Bohušovická mlékárna",
+  "category": "jogurt",
   "desc": "",
   "weight": 130,
   "unit": "g",
   "lactose": null,
   "image": null,
   "barcode": null,
-  "created": 1786445787179,
+  "created": 1786478839086,
   "prices": [
    {
-    "id": "pr_0390",
-    "store": "Globus",
+    "id": "pr_0930",
+    "store": "Košík",
     "price": 24.9,
     "note": "",
-    "ts": 1786445787140
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed094",
+  "name": "Tilsiter plátky bez laktózy",
+  "brand": "Heinrichsthaler",
+  "category": "syr",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839087,
+  "prices": [
+   {
+    "id": "pr_0940",
+    "store": "Košík",
+    "price": 79.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed095",
+  "name": "Emmentaler plátky bez laktózy",
+  "brand": "Heinrichsthaler",
+  "category": "syr",
+  "desc": "",
+  "weight": 125,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839088,
+  "prices": [
+   {
+    "id": "pr_0950",
+    "store": "Košík",
+    "price": 67.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed096",
+  "name": "Gouda plátky 48% bez laktózy",
+  "brand": "Heinrichsthaler",
+  "category": "syr",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839089,
+  "prices": [
+   {
+    "id": "pr_0960",
+    "store": "Košík",
+    "price": 79.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed097",
+  "name": "Top jogurt ovocný mix bez laktózy",
+  "brand": "Krajanka",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 125,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839090,
+  "prices": [
+   {
+    "id": "pr_0970",
+    "store": "Košík",
+    "price": 12.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed098",
+  "name": "Feta 45% bez laktózy",
+  "brand": "Minus L",
+  "category": "syr",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839091,
+  "prices": [
+   {
+    "id": "pr_0980",
+    "store": "Košík",
+    "price": 119.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed099",
+  "name": "Jogurt borůvka krémový bez laktózy",
+  "brand": "Hollandia",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 180,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839092,
+  "prices": [
+   {
+    "id": "pr_0990",
+    "store": "Košík",
+    "price": 22.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed100",
+  "name": "Mascarpone bez laktózy",
+  "brand": "Casa Azzurra",
+  "category": "syr",
+  "desc": "",
+  "weight": 250,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839093,
+  "prices": [
+   {
+    "id": "pr_1000",
+    "store": "Košík",
+    "price": 104.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed101",
+  "name": "Jihočeský Nature jahodový jogurt bez laktózy",
+  "brand": "Madeta",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839094,
+  "prices": [
+   {
+    "id": "pr_1010",
+    "store": "Košík",
+    "price": 19.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed102",
+  "name": "Jihočeský Nature bílý jogurt bez laktózy",
+  "brand": "Madeta",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839095,
+  "prices": [
+   {
+    "id": "pr_1020",
+    "store": "Košík",
+    "price": 19.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed103",
+  "name": "Lactino Bánovecký smetanový jogurt bílý bez laktózy",
+  "brand": "Milsy",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 145,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839096,
+  "prices": [
+   {
+    "id": "pr_1030",
+    "store": "Košík",
+    "price": 16.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed104",
+  "name": "Dráčik bezlaktózový vanilka",
+  "brand": "Tami",
+  "category": "dezert",
+  "desc": "",
+  "weight": 80,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839097,
+  "prices": [
+   {
+    "id": "pr_1040",
+    "store": "Košík",
+    "price": 17.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed105",
+  "name": "Kozí jogurt 0% laktózy",
+  "brand": "Bon Lait",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839098,
+  "prices": [
+   {
+    "id": "pr_1050",
+    "store": "Košík",
+    "price": 37.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed106",
+  "name": "Bezlaktózový smetanový jogurt jahoda a ananas",
+  "brand": "Tami",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839099,
+  "prices": [
+   {
+    "id": "pr_1060",
+    "store": "Košík",
+    "price": 19.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed107",
+  "name": "Bezlaktózový smetanový jogurt čokoláda",
+  "brand": "Tami",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839100,
+  "prices": [
+   {
+    "id": "pr_1070",
+    "store": "Košík",
+    "price": 19.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed108",
+  "name": "Bezlaktózový smetanový jogurt bílý",
+  "brand": "Tami",
+  "category": "jogurt",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839101,
+  "prices": [
+   {
+    "id": "pr_1080",
+    "store": "Košík",
+    "price": 19.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed109",
+  "name": "Trvanlivé plnotučné mléko bezlaktózové",
+  "brand": "Tami",
+  "category": "mleko",
+  "desc": "",
+  "weight": 250,
+  "unit": "ml",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839102,
+  "prices": [
+   {
+    "id": "pr_1090",
+    "store": "Košík",
+    "price": 19.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed110",
+  "name": "Mini Babybel Original (9 ks)",
+  "brand": "Babybel",
+  "category": "syr",
+  "desc": "",
+  "weight": 180,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839103,
+  "prices": [
+   {
+    "id": "pr_1100",
+    "store": "Košík",
+    "price": 129.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed111",
+  "name": "Bryndza bez laktózy",
+  "brand": "Liptov",
+  "category": "syr",
+  "desc": "",
+  "weight": 110,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839104,
+  "prices": [
+   {
+    "id": "pr_1110",
+    "store": "Košík",
+    "price": 49.9,
+    "note": "akce",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed112",
+  "name": "BIO smetana ke šlehání bez laktózy",
+  "brand": "Berchtesgadener Land",
+  "category": "smetana",
+  "desc": "",
+  "weight": 200,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839105,
+  "prices": [
+   {
+    "id": "pr_1120",
+    "store": "Košík",
+    "price": 51.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed113",
+  "name": "Parenica uzená bez laktózy",
+  "brand": "Milsy",
+  "category": "syr",
+  "desc": "",
+  "weight": 110,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839106,
+  "prices": [
+   {
+    "id": "pr_1130",
+    "store": "Košík",
+    "price": 69.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed114",
+  "name": "Almette smetanový tvarohový sýr bez laktózy",
+  "brand": "Almette",
+  "category": "syr",
+  "desc": "",
+  "weight": 150,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839107,
+  "prices": [
+   {
+    "id": "pr_1140",
+    "store": "Košík",
+    "price": 59.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed115",
+  "name": "Mozzarella di Bufala bez laktózy",
+  "brand": "Cilento",
+  "category": "syr",
+  "desc": "",
+  "weight": 250,
+  "unit": "g",
+  "lactose": null,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839108,
+  "prices": [
+   {
+    "id": "pr_1150",
+    "store": "Košík",
+    "price": 89.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed116",
+  "name": "Kids sójový nápoj jahoda",
+  "brand": "Alpro",
+  "category": "napoj",
+  "desc": "",
+  "weight": 200,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839109,
+  "prices": [
+   {
+    "id": "pr_1160",
+    "store": "Košík",
+    "price": 36.9,
+    "note": "",
+    "ts": 1786478838993
+   }
+  ]
+ },
+ {
+  "id": "p_seed117",
+  "name": "Kids ovesný nápoj čokoláda",
+  "brand": "Alpro",
+  "category": "napoj",
+  "desc": "",
+  "weight": 200,
+  "unit": "ml",
+  "lactose": 0,
+  "image": null,
+  "barcode": null,
+  "created": 1786478839110,
+  "prices": [
+   {
+    "id": "pr_1170",
+    "store": "Košík",
+    "price": 36.9,
+    "note": "",
+    "ts": 1786478838993
    }
   ]
  }
