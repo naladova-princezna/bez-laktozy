@@ -251,6 +251,11 @@
   .scan-photo .ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;text-align:center;padding:0 20px}
   .scan-photo .ph svg{width:40px;height:40px}
   .scan-or{text-align:center;color:var(--text-3);font-size:13px;font-weight:600;margin:22px 0 2px}
+  .la-big{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:15px;box-shadow:var(--shadow-sm);text-align:center;margin-top:8px}
+  .la-big .n{font-family:var(--font-round);font-weight:800;font-size:30px;color:var(--accent-ink);line-height:1.05}
+  .la-big .n small{font-size:15px;color:var(--text-2);font-weight:700}
+  .la-big .lbl{font-size:13px;color:var(--text-2);margin-top:6px}
+  .la-or{text-align:center;color:var(--text-3);font-size:13px;font-weight:600;margin:22px 0 2px}
   .manual-ean{margin-top:16px;display:flex;flex-direction:column;gap:10px}
   .manual-ean input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 14px;color:var(--text);outline:none;text-align:center;letter-spacing:.04em}
   .manual-ean input:focus{border-color:var(--accent)}
@@ -284,14 +289,17 @@
       <h1 class="big">LactoSTOP<small id="counter"></small></h1>
       <div class="topbtns">
         <button class="iconbtn" id="scanTopBtn" aria-label="Skenovat kód">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8M11 8v8M15 8v8"/></svg>
+          <svg viewBox="-2 -2 28 28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8M11 8v8M15 8v8"/></svg>
         </button>
         <button class="iconbtn" id="basketBtn" aria-label="Košík">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 10.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          <svg viewBox="-2 -2 28 28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <span class="badge hidden" id="basketBadge">0</span>
         </button>
+        <button class="iconbtn" id="lactaseBtn" aria-label="Laktáza asistent">
+          <svg viewBox="-2 -2 28 28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+        </button>
         <button class="iconbtn" id="settingsBtn" aria-label="Nastavení a záloha">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 7 19.4a1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0-1.2-2.9H1a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 2.6 7a1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 8 2.6h.1A1.7 1.7 0 0 0 9 1.1V1a2 2 0 1 1 4 0v.1A1.7 1.7 0 0 0 15 2.6a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H23a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+          <svg viewBox="-2 -2 28 28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         </button>
       </div>
     </div>
@@ -402,6 +410,11 @@
       <input type="file" id="backupFile" accept="application/json,.json" class="hidden">
     </div>
     <p class="hint">Data jsou uložená jen v tomto zařízení. Zálohu si občas stáhni. Produkty můžeš zadat i na počítači (stejná adresa v prohlížeči), stáhnout zálohu a nahrát ji tady v telefonu — telefon zůstává hlavní, nahrání jen doplní/aktualizuje.</p>
+    <div class="field"><label>Základ aplikace (GitHub)</label>
+      <button class="btn solid" id="downloadSeed" style="margin-top:2px">Stáhnout data.json pro repozitář</button>
+      <button class="btn" id="pullRepo" style="margin-top:10px">Načíst data z repozitáře</button>
+    </div>
+    <p class="hint">„Stáhnout data.json" uloží celý tvůj katalog jako soubor <b>data.json</b>. Když ho nahraješ do kořene GitHub repozitáře (vedle index.html) a aktualizuješ appku, každá <b>nová</b> instalace odstartuje s tímhle katalogem. „Načíst data z repozitáře" stáhne data.json z repozitáře a doplní ho do tohoto zařízení.</p>
   </div>
 </div>
 
@@ -420,6 +433,26 @@
       <input id="manualEan" type="text" inputmode="numeric" placeholder="Číslo EAN pod čárovým kódem" enterkeyhint="search">
       <button class="btn" id="manualEanBtn">Najít podle kódu</button>
     </div>
+  </div>
+</div>
+
+<!-- Lactase assistant sheet -->
+<div class="sheet" id="lactaseSheet">
+  <div class="grabber"></div>
+  <div class="sheethead"><button style="opacity:0;pointer-events:none">.</button><div class="t">Laktáza asistent</div><button id="lactaseClose">Hotovo</button></div>
+  <div class="sheetbody">
+    <div class="prefill-note" style="margin-top:2px">Orientační pomůcka, ne lékařská rada. Řiď se příbalovým letákem a vlastní zkušeností.</div>
+    <div class="field"><label>Produkt</label><button class="selectrow" id="laProductSelect"><span id="laProductLabel">Vyber z katalogu</span><span class="val">▾</span></button></div>
+    <div class="field"><label>Laktóza <span id="laLacUnit" style="text-transform:none;font-weight:500;color:var(--text-3)">(g na 100 g)</span></label><input id="laLactoseInput" type="text" inputmode="decimal" placeholder="např. 3,5"></div>
+    <div class="field"><label>Porce, kterou sníš / vypiješ</label>
+      <div class="amountrow"><input id="laPortionInput" type="text" inputmode="decimal" placeholder="např. 200"><div class="seg" id="laUnitSeg"><button type="button" data-u="g" class="on">g</button><button type="button" data-u="ml">ml</button></div></div>
+    </div>
+    <div class="la-big"><div class="n" id="laResult">— <small>g laktózy</small></div><div class="lbl" id="laResultLbl">v této porci</div></div>
+    <div class="la-or">dávkování tablet (orientační)</div>
+    <div class="field"><label>Kolik g laktózy zvládne 1 tvoje tableta</label><input id="laTabletInput" type="text" inputmode="decimal" placeholder="např. 12"></div>
+    <div class="field"><label>Síla tablety <span style="text-transform:none;font-weight:500;color:var(--text-3)">(jen poznámka)</span></label><input id="laFccInput" type="text" placeholder="např. 9000 FCC"></div>
+    <div class="la-big"><div class="n" id="laDose">—</div><div class="lbl" id="laDoseLbl">nastav hodnotu výše a spočítám počet tablet</div></div>
+    <p class="hint">Tip: leták udává sílu ve FCC, ne v gramech. Vyjdi z vlastní zkušenosti — když ti např. 1 tableta stačí na sklenici mléka (≈ 12 g laktózy), nastav sem 12. Hodnota se pamatuje pro příště.</p>
   </div>
 </div>
 
@@ -593,7 +626,9 @@
     }); priceHtml+='</div>'; }
 
     $("detailBody").innerHTML=hero+'<div class="dname">'+esc(p.name)+'</div>'+(p.brand?'<div class="dbrand">'+esc(p.brand)+'</div>':'')+chipsHtml+scoreCard+(p.desc?'<div class="ddesc">'+esc(p.desc)+'</div>':'')+
+      '<button class="btn" id="laFromDetail" style="margin-top:14px">Spočítat dávku laktázy pro tuto porci</button>'+
       '<div class="sectionhead"><h3>Ceny v obchodech</h3><button class="addlink" id="addPriceBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Přidat</button></div>'+priceHtml;
+    $("laFromDetail").addEventListener("click",function(){ openLactase(currentId); });
     $("addPriceBtn").addEventListener("click",function(){ openPriceSheet(null); });
     Array.prototype.forEach.call($("detailBody").querySelectorAll(".pricerow"),function(el){ el.addEventListener("click",function(){ openPriceSheet(el.getAttribute("data-pid")); }); });
   }
@@ -641,9 +676,12 @@
     var note=$("prefillNote");
     if(prefill){
       note.classList.remove("hidden");
-      if(prefill.__found){ note.className="prefill-note"; note.textContent="Předvyplněno z Open Food Facts – zkontroluj a případně doplň laktózu."; }
-      else if(prefill.__err){ note.className="prefill-note warn"; note.textContent="Nepodařilo se spojit s Open Food Facts – vyplň ručně."; }
-      else { note.className="prefill-note warn"; note.textContent="Produkt nenalezen v Open Food Facts – vyplň ručně."; }
+      if(prefill.lactose!=null&&prefill.__found){ note.className="prefill-note"; note.textContent="Předvyplněno z Open Food Facts včetně laktózy. Zkontroluj a ulož."; }
+      else if(prefill.__found&&prefill.__milk){ note.className="prefill-note warn"; note.textContent="Předvyplněno z Open Food Facts. Podle složení obsahuje mléčné složky — doplň prosím obsah laktózy ručně."; }
+      else if(prefill.__found&&prefill.__hasIngredients){ note.className="prefill-note"; note.textContent="Předvyplněno z Open Food Facts. Ve složení nebyly nalezeny běžné mléčné složky — laktózu si přesto ověř."; }
+      else if(prefill.__found){ note.className="prefill-note"; note.textContent="Předvyplněno z Open Food Facts — zkontroluj a doplň laktózu."; }
+      else if(prefill.__err){ note.className="prefill-note warn"; note.textContent="Nepodařilo se spojit s Open Food Facts — vyplň ručně."; }
+      else { note.className="prefill-note warn"; note.textContent="Produkt nenalezen v Open Food Facts — vyplň ručně."; }
     } else { note.classList.add("hidden"); }
     openSheet($("productSheet"));
     if(!product&&!prefill) setTimeout(function(){ $("nameInput").focus(); },330);
@@ -753,6 +791,7 @@
       var ean=(text||"").replace(/\D/g,"");
       try{fileScanner.clear();}catch(_){} fileScanner=null;
       if(ean.length<6){ $("scanStatus").textContent="Kód se nepodařilo přečíst. Zkus to vyfotit znovu, nebo zadej číslo ručně."; return; }
+      if(navigator.vibrate){ try{ navigator.vibrate(45); }catch(_){} }
       closeScan(); lookupOFF(ean);
     }).catch(function(){
       try{ if(fileScanner) fileScanner.clear(); }catch(_){} fileScanner=null;
@@ -765,13 +804,20 @@
     if(/butter|margarin/.test(tags)) return "maslo"; if(/cream/.test(tags)) return "smetana";
     if(/milk/.test(tags)) return "mleko"; if(/beverage|drink|juice/.test(tags)) return "napoj";
     if(/dessert|pudding|ice-cream/.test(tags)) return "dezert"; return null; }
+  function detectMilk(text,allergens){
+    var t=(" "+(text||"")+" ").toLowerCase();
+    var kws=["mlék","mlék","mléčn","mlieko","laktóz","laktoz","syrovátk","syrovatk","máslo","maslo","smetan","tvaroh","kasein","kaseinát","podmáslí","podmasli","jogurt","sýr","milk","lactose","whey","casein","butter","cream"];
+    var hit=false; for(var i=0;i<kws.length;i++){ if(t.indexOf(kws[i])>=0){ hit=true; break; } }
+    var alg=((allergens||[]).join(",")).toLowerCase(); if(/milk|lait|milch|mléko/.test(alg)) hit=true;
+    return hit;
+  }
   async function lookupOFF(ean){
     if(!ean){ openProductSheet(null,{__found:false}); return; }
     toast("Hledám kód "+ean+" …");
     var prefill={barcode:ean};
     try{
       var ctrl=new AbortController(), to=setTimeout(function(){ctrl.abort();},9000);
-      var r=await fetch("https://world.openfoodfacts.org/api/v2/product/"+encodeURIComponent(ean)+".json?fields=product_name,product_name_cs,brands,image_front_url,image_url,quantity,nutriments,categories_tags",{signal:ctrl.signal});
+      var r=await fetch("https://world.openfoodfacts.org/api/v2/product/"+encodeURIComponent(ean)+".json?fields=product_name,product_name_cs,brands,image_front_url,image_url,quantity,nutriments,categories_tags,ingredients_text_cs,ingredients_text,allergens_tags",{signal:ctrl.signal});
       clearTimeout(to); var j=await r.json();
       if(j&&j.status===1&&j.product){
         var pr=j.product;
@@ -781,6 +827,9 @@
         if(pr.nutriments&&typeof pr.nutriments.lactose_100g==="number") prefill.lactose=Math.round(pr.nutriments.lactose_100g*1000)/1000;
         prefill.category=guessCat(pr.categories_tags);
         var img=pr.image_front_url||pr.image_url; if(img){ prefill.image=(await urlToDataUrl(img))||img; }
+        var ing=(pr.ingredients_text_cs||pr.ingredients_text||"");
+        prefill.__hasIngredients=!!ing;
+        prefill.__milk=detectMilk(ing,pr.allergens_tags);
         prefill.__found=true;
       } else { prefill.__found=false; }
     }catch(e){ prefill.__found=false; prefill.__err=true; }
@@ -790,6 +839,7 @@
   /* ---------- Sort sheet ---------- */
   var SORTS=[["name","Název (A–Z)"],["recent","Naposledy přidané"],["score","Skóre (nejbezpečnější první)"],["per100","Cena za 100 g/ml"],["brand","Výrobce"]];
   function openSort(){
+    $("sortSheet").querySelector(".t").textContent="Seřadit podle";
     var body=$("sortBody"); body.innerHTML="";
     SORTS.forEach(function(o){
       var d=document.createElement("button"); d.className="opt"+(sortKey===o[0]?" sel":""); d.style.width="100%";
@@ -811,18 +861,19 @@
   }
   function uniqueBrands(){ var s={}; products.forEach(function(p){ if(p.brand) s[p.brand]=1; }); return Object.keys(s).sort(function(a,b){return a.localeCompare(b,"cs");}); }
   function uniqueStores(){ var s={}; products.forEach(function(p){ (p.prices||[]).forEach(function(pr){ if(pr.store) s[pr.store]=1; }); }); return Object.keys(s).sort(function(a,b){return a.localeCompare(b,"cs");}); }
-  function pickList(title,options,current,onPick){
-    // reuse sort sheet as a generic picker
+  function pickList(title,options,current,onPick,opts){
+    opts=opts||{}; var back=opts.back||"filterSheet";
     var body=$("sortBody"); body.innerHTML="";
-    var all=[[null,title.indexOf("Výrobce")>=0?"Všichni výrobci":"Všechny obchody"]].concat(options.map(function(o){return [o,o];}));
-    all.forEach(function(o){
-      var d=document.createElement("button"); d.className="opt"+((current||null)===o[0]?" sel":""); d.style.width="100%";
-      d.innerHTML='<span>'+esc(o[1])+'</span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
-      d.addEventListener("click",function(){ onPick(o[0]); closeSheet($("sortSheet")); openSheet($("filterSheet")); });
+    var items=options.map(function(o){ return (Object.prototype.toString.call(o)==="[object Array]")?{v:o[0],l:o[1]}:{v:o,l:o}; });
+    if(opts.noneLabel) items.unshift({v:null,l:opts.noneLabel});
+    items.forEach(function(o){
+      var d=document.createElement("button"); d.className="opt"+(((current==null?null:current))===o.v?" sel":""); d.style.width="100%";
+      d.innerHTML='<span>'+esc(o.l)+'</span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+      d.addEventListener("click",function(){ onPick(o.v); closeSheet($("sortSheet")); openSheet($(back)); });
       body.appendChild(d);
     });
     $("sortSheet").querySelector(".t").textContent=title;
-    closeSheet($("filterSheet")); openSheet($("sortSheet"));
+    closeSheet($(back)); openSheet($("sortSheet"));
   }
   function updateFilterDot(){ var active=filters.cats.size||filters.brand||filters.store; $("filterDot").classList.toggle("hidden",!active); }
   function clearFilters(){ filters.cats.clear(); filters.brand=null; filters.store=null; filters.scores.clear(); paintScoreChips(); updateFilterDot(); renderList(); openFilter(); }
@@ -886,16 +937,76 @@
       toast("Záloha stažena");
     }catch(e){ banner("Zálohu se nepodařilo vytvořit."); }
   }
-  async function importFromText(raw){
-    var arr; try{ arr=JSON.parse(raw); }catch(e){ banner("Soubor není platná záloha."); return; }
-    if(!Array.isArray(arr)){ banner("Záloha nemá správný formát."); return; }
+  async function importArray(arr,silent){
+    if(!Array.isArray(arr)){ if(!silent) banner("Neplatný formát dat."); return 0; }
     var n=0;
     for(var i=0;i<arr.length;i++){ var it=arr[i]; if(!it||!it.id||!it.name) continue; it.prices=Array.isArray(it.prices)?it.prices:[];
-      try{ await storeSet(it.id,it); }catch(e){ banner("Obnovení selhalo při ukládání."); return; }
+      try{ await storeSet(it.id,it); }catch(e){ if(!silent) banner("Ukládání selhalo."); return n; }
       var ex=byId(it.id); if(ex){ for(var kk in it) ex[kk]=it[kk]; } else products.push(it); n++;
     }
-    renderList(); toast(n+" produktů nahráno");
+    return n;
   }
+  async function importFromText(raw){
+    var arr; try{ arr=JSON.parse(raw); }catch(e){ banner("Soubor není platná záloha."); return; }
+    var n=await importArray(arr,false); renderList(); toast(n+" produktů nahráno");
+  }
+  function downloadSeed(){
+    try{
+      var blob=new Blob([JSON.stringify(products)],{type:"application/json"});
+      var url=URL.createObjectURL(blob), a=document.createElement("a");
+      a.href=url; a.download="data.json"; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); },1000);
+      toast("Staženo data.json ("+products.length+" produktů)");
+    }catch(e){ banner("Export data.json se nepodařil."); }
+  }
+  async function loadSeedIfEmpty(){
+    if(products.length) return;
+    try{ var r=await fetch("data.json",{cache:"no-cache"}); if(!r.ok) return; var arr=await r.json(); if(Array.isArray(arr)&&arr.length){ var n=await importArray(arr,true); if(n) setTimeout(function(){ toast("Načteno "+n+" produktů ze základní databáze"); },500); } }catch(e){}
+  }
+  async function pullFromRepo(){
+    try{ var r=await fetch("data.json",{cache:"no-cache"}); if(!r.ok){ banner("Soubor data.json v repozitáři nenalezen."); return; }
+      var arr=await r.json(); var n=await importArray(arr,false); renderList(); toast(n+" produktů načteno z repozitáře"); }
+    catch(e){ banner("Načtení z repozitáře se nepodařilo."); }
+  }
+
+  /* ---------- Lactase assistant ---------- */
+  var laState={productId:null, unit:"g"};
+  function laUnitLabel(){ return laState.unit==="ml"?"(g na 100 ml)":"(g na 100 g)"; }
+  function laSetUnit(u){ laState.unit=(u==="ml")?"ml":"g"; Array.prototype.forEach.call($("laUnitSeg").querySelectorAll("button"),function(b){ b.classList.toggle("on",b.getAttribute("data-u")===laState.unit); }); $("laLacUnit").textContent=laUnitLabel(); }
+  function openLactase(preId){
+    laState={productId:null, unit:"g"};
+    $("laProductLabel").textContent="Vyber z katalogu";
+    $("laLactoseInput").value=""; $("laPortionInput").value=""; laSetUnit("g");
+    var t=prefs.tablet||{}; $("laTabletInput").value=(t.grams!=null?fmtLac(t.grams):""); $("laFccInput").value=t.fcc||"";
+    if(preId) laSelectProduct(preId);
+    laRecompute(); openSheet($("lactaseSheet"));
+  }
+  function laSelectProduct(id){
+    if(id==="__manual__"){ laState.productId="__manual__"; $("laProductLabel").textContent="Vlastní (ruční laktóza)"; $("laLactoseInput").value=""; laRecompute(); return; }
+    var p=byId(id); if(!p) return;
+    laState.productId=id;
+    $("laProductLabel").textContent=p.name+(p.brand?" · "+p.brand:"");
+    laSetUnit(p.unit||"g");
+    $("laLactoseInput").value=(p.lactose!=null)?fmtLac(p.lactose):"";
+    if(p.weight) $("laPortionInput").value=(Math.round(p.weight*10)/10).toLocaleString("cs-CZ");
+    laRecompute();
+  }
+  function laPickProduct(){
+    var opts=products.slice().sort(function(a,b){return a.name.localeCompare(b.name,"cs");}).map(function(p){ return [p.id, p.name+(p.brand?" · "+p.brand:"")]; });
+    opts.unshift(["__manual__","Vlastní (zadám laktózu ručně)"]);
+    pickList("Produkt", opts, laState.productId, function(v){ if(v) laSelectProduct(v); }, {back:"lactaseSheet"});
+  }
+  function laRecompute(){
+    var lac=parseLactose($("laLactoseInput").value);
+    var portion=parseAmount($("laPortionInput").value, laState.unit); var pAmt=portion?portion.amount:null;
+    var grams=(lac!=null && pAmt)? lac*pAmt/100 : null;
+    if(grams!=null){ $("laResult").innerHTML=(Math.round(grams*100)/100).toLocaleString("cs-CZ")+' <small>g laktózy</small>'; $("laResultLbl").textContent="v porci "+fmtAmount(pAmt,laState.unit); }
+    else { $("laResult").innerHTML='— <small>g laktózy</small>'; $("laResultLbl").textContent=(lac==null?"zadej obsah laktózy":"zadej velikost porce"); }
+    var perTab=parseLactose($("laTabletInput").value);
+    if(grams!=null && perTab && perTab>0){ var n=Math.ceil(grams/perTab); $("laDose").textContent=n+" "+(n===1?"tableta":(n<5?"tablety":"tablet")); $("laDoseLbl").textContent="orientačně na tuto porci"; }
+    else { $("laDose").textContent="—"; $("laDoseLbl").textContent="nastav pole „g na 1 tabletu“ a spočítám počet"; }
+  }
+  function laSaveTabletPrefs(){ prefs.tablet={ grams:parseLactose($("laTabletInput").value), fcc:$("laFccInput").value.trim() }; metaSet("prefs",prefs); }
 
   /* ---------- Events ---------- */
   $("addBtn").addEventListener("click",function(){ openProductSheet(null); });
@@ -928,8 +1039,8 @@
   $("filterBtn").addEventListener("click",openFilter);
   $("filterClose").addEventListener("click",function(){ closeSheet($("filterSheet")); });
   $("filterClear").addEventListener("click",clearFilters);
-  $("brandSelect").addEventListener("click",function(){ pickList("Výrobce",uniqueBrands(),filters.brand,function(v){ filters.brand=v; updateFilterDot(); renderList(); }); });
-  $("storeSelect").addEventListener("click",function(){ pickList("Obchod",uniqueStores(),filters.store,function(v){ filters.store=v; updateFilterDot(); renderList(); }); });
+  $("brandSelect").addEventListener("click",function(){ pickList("Výrobce",uniqueBrands(),filters.brand,function(v){ filters.brand=v; updateFilterDot(); renderList(); },{back:"filterSheet",noneLabel:"Všichni výrobci"}); });
+  $("storeSelect").addEventListener("click",function(){ pickList("Obchod",uniqueStores(),filters.store,function(v){ filters.store=v; updateFilterDot(); renderList(); },{back:"filterSheet",noneLabel:"Všechny obchody"}); });
   Array.prototype.forEach.call(document.querySelectorAll(".schip"),function(el){ el.addEventListener("click",function(){ var k=el.getAttribute("data-sc"); if(filters.scores.has(k)) filters.scores.delete(k); else filters.scores.add(k); paintScoreChips(); renderList(); }); });
 
   $("basketBtn").addEventListener("click",function(){ renderBasket(); openSheet($("basketSheet")); });
@@ -937,8 +1048,18 @@
   $("basketClear").addEventListener("click",function(){ basket.clear(); persistBasket(); updateBasketBadge(); renderBasket(); });
 
   $("settingsBtn").addEventListener("click",function(){ openSheet($("settingsSheet")); });
+  $("lactaseBtn").addEventListener("click",function(){ openLactase(null); });
+  $("lactaseClose").addEventListener("click",function(){ closeSheet($("lactaseSheet")); });
+  $("laProductSelect").addEventListener("click",laPickProduct);
+  Array.prototype.forEach.call($("laUnitSeg").querySelectorAll("button"),function(b){ b.addEventListener("click",function(){ laSetUnit(b.getAttribute("data-u")); laRecompute(); }); });
+  $("laLactoseInput").addEventListener("input",laRecompute);
+  $("laPortionInput").addEventListener("input",laRecompute);
+  $("laTabletInput").addEventListener("input",function(){ laRecompute(); laSaveTabletPrefs(); });
+  $("laFccInput").addEventListener("input",laSaveTabletPrefs);
   $("settingsClose").addEventListener("click",function(){ closeSheet($("settingsSheet")); });
   $("downloadBackup").addEventListener("click",downloadBackup);
+  $("downloadSeed").addEventListener("click",downloadSeed);
+  $("pullRepo").addEventListener("click",pullFromRepo);
   $("uploadBackup").addEventListener("click",function(){ $("backupFile").click(); });
   $("backupFile").addEventListener("change",function(){ var f=this.files&&this.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ importFromText(String(rd.result)); }; rd.onerror=function(){ banner("Soubor se nepodařilo přečíst."); }; rd.readAsText(f); this.value=""; });
 
@@ -947,7 +1068,7 @@
 
   $("scrim").addEventListener("click",function(){
     if($("confirmDialog").classList.contains("show")){ closeConfirm(); return; }
-    ["productSheet","priceSheet","sortSheet","filterSheet","basketSheet","settingsSheet"].forEach(function(id){ if($(id).classList.contains("show")) closeSheet($(id)); });
+    ["productSheet","priceSheet","sortSheet","filterSheet","basketSheet","settingsSheet","lactaseSheet"].forEach(function(id){ if($(id).classList.contains("show")) closeSheet($(id)); });
     if($("scanSheet").classList.contains("show")) closeScan();
   });
 
@@ -958,6 +1079,7 @@
     try{ products=await storeLoadAll(); }catch(e){ products=[]; }
     try{ var pr=await metaGet("prefs"); if(pr){ prefs=pr; if(prefs.sort){ sortKey=prefs.sort; } } }catch(e){}
     try{ var bk=await metaGet("basket"); if(Array.isArray(bk)) bk.forEach(function(id){ basket.add(id); }); }catch(e){}
+    await loadSeedIfEmpty();
     $("sortLabel").textContent=sortShortLabel(sortKey);
     paintScoreChips(); updateBasketBadge();
     if(_dbFail) banner("Ukládání v prohlížeči teď nejde — data se po zavření neuloží. Vypni anonymní režim nebo zkus jiný prohlížeč.");

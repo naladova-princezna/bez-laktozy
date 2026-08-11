@@ -47,3 +47,46 @@ PŘENOS DAT MEZI ZAŘÍZENÍMI (PC → telefon)
 DATA
 - Ukládají se jen v prohlížeči daného zařízení (IndexedDB). Zálohu si občas stáhni.
 - Nepoužívej anonymní/soukromé okno – data by se neuložila.
+
+VÝCHOZÍ KATALOG V REPOZITÁŘI (data.json)
+- V balíčku je soubor data.json (na začátku prázdný "[]").
+- Když appka poprvé naběhne a v telefonu ještě nic není, načte katalog právě z data.json.
+- Jak si nasypat vlastní katalog do repozitáře:
+  1. V appce: Nastavení (ozubené kolo) → "Stáhnout data.json pro repozitář".
+  2. Stažený data.json nahraj do KOŘENE repozitáře (vedle index.html), přepiš ten prázdný.
+  3. Ulož/commitni. Nové instalace appky pak odstartují s tímhle katalogem.
+- Tlačítko "Načíst data z repozitáře" stáhne aktuální data.json z webu appky a doplní
+  ho do zařízení (hodí se pro druhý telefon/tablet). Slučuje podle ID – nic nemaže.
+- Pozor: automaticky se data.json načte jen když je zařízení prázdné; když už tam data máš,
+  tvoje data se nepřepíšou.
+
+ZÁKLADNÍ DATA V REPOZITÁŘI (data.json) — export z telefonu do GitHubu
+---------------------------------------------------------------------
+Tímhle nastavíš, aby se aplikace na NOVÉM zařízení otevřela rovnou s tvým katalogem.
+
+1. V telefonu: Nastavení (ozubené kolo) → "Stáhnout data.json pro repozitář".
+   Vznikne soubor data.json s celým tvým katalogem.
+2. Nahraj data.json do KOŘENE repozitáře na GitHubu (vedle index.html).
+   (Web GitHubu: tlačítko Add file → Upload files → přetáhni data.json → Commit.)
+3. Hotovo. Každá nová instalace appky (nové zařízení / po vyčištění) odstartuje
+   s těmito produkty. Data.json se načte automaticky, když je katalog prázdný.
+
+Poznámky:
+- Tvoje data v telefonu, kde už produkty máš, tím zůstávají beze změny.
+- Chceš na svém telefonu natáhnout novější data.json z repozitáře? 
+  Nastavení → "Načíst data z repozitáře" — doplní/aktualizuje produkty podle jejich ID.
+- Když aktualizuješ data.json v repozitáři, už nainstalované appky se samy nepřepíšou
+  (aby nepřišly o vlastní úpravy). Pro ně slouží právě "Načíst data z repozitáře".
+- Pozor na velikost: fotky se ukládají přímo do dat, takže při hodně produktech
+  s fotkami může být data.json velký (klidně několik MB). GitHubu to nevadí.
+
+LAKTÁZA ASISTENT (dávkování tablet) — orientační
+------------------------------------------------
+Ikona tablety v horní liště (nebo v detailu produktu tlačítko
+"Spočítat dávku laktázy pro tuto porci").
+1. Vyber produkt z katalogu (natáhne se u něj uložená laktóza) nebo zvol "Vlastní".
+2. Zadej velikost porce (g/ml). Appka spočítá gramy laktózy v porci.
+3. Zadej, kolik g laktózy zvládne 1 tvoje tableta (vyjdi z letáku/zkušenosti;
+   např. když 1 tableta stačí na sklenici mléka ≈ 12 g, napiš 12). Hodnota se pamatuje.
+4. Ukáže orientační počet tablet.
+POZOR: je to jen pomůcka, ne lékařská rada. Řiď se příbalovým letákem a svojí zkušeností.
