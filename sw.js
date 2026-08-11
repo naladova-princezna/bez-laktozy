@@ -1,5 +1,5 @@
 /* LactoSTOP — service worker (offline app shell) */
-var CACHE = "lactostop-v4";
+var CACHE = "lactostop-v5";
 var ASSETS = [
   "./","./index.html","./manifest.webmanifest",
   "./lib/html5-qrcode.min.js",
