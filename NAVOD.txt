@@ -18,12 +18,12 @@ JAK NASADIT (poprvé)
      manifest.webmanifest
      sw.js
      icon-180.png, icon-192.png, icon-512.png
-     lib/html5-qrcode.min.js   ← POZOR: složka "lib" je nová a musí tam být!
+     lib/zxing.min.js   ← POZOR: složka "lib" je nová a musí tam být!
 2. Settings → Pages → Branch: main → Save. Repozitář musí být Public.
 3. Na iPhonu otevři adresu v Safari → Sdílet → Přidat na plochu.
 
 JAK AKTUALIZOVAT (máš už starší verzi na GitHubu)
-1. Přepiš staré soubory těmito a PŘIDEJ novou složku lib/ se souborem html5-qrcode.min.js.
+1. Přepiš staré soubory těmito a PŘIDEJ novou složku lib/ se souborem zxing.min.js.
 2. Počkej ~1 minutu, než se Pages přegenerují.
 3. Na iPhonu smaž starou ikonu z plochy a přidej ji znovu (obnoví se název, ikona i cache).
 

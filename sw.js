@@ -1,8 +1,8 @@
 /* LactoSTOP — service worker (offline app shell) */
-var CACHE = "lactostop-v5";
+var CACHE = "lactostop-v6";
 var ASSETS = [
   "./","./index.html","./manifest.webmanifest",
-  "./lib/html5-qrcode.min.js",
+  "./lib/zxing.min.js",
   "./icon-180.png","./icon-192.png","./icon-512.png"
 ];
 self.addEventListener("install", function(e){

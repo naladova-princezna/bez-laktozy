@@ -467,7 +467,7 @@
 
 <div id="toast"></div>
 
-<script src="lib/html5-qrcode.min.js"></script>
+<script src="lib/zxing.min.js"></script>
 <script>
 (function(){
   "use strict";
@@ -772,8 +772,7 @@
     }).catch(function(){ resolve(null); });
   }); }
 
-  /* ---------- Scanning (photo) + Open Food Facts ---------- */
-  var fileScanner=null;
+  /* ---------- Scanning (photo, ZXing) + Open Food Facts ---------- */
   function scanPlaceholder(){ return '<div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a1 1 0 0 1 1-1h2"/><path d="M17 4h2a1 1 0 0 1 1 1v2"/><path d="M20 17v2a1 1 0 0 1-1 1h-2"/><path d="M7 20H5a1 1 0 0 1-1-1v-2"/><path d="M7 8v8M10.5 8v8M14 8v8M17 8v8"/></svg>Vyfoť čárový kód<br>na obalu produktu</div>'; }
   function startScan(){
     $("manualEan").value="";
@@ -781,24 +780,68 @@
     $("scanStatus").textContent="Vyfoť čárový kód (EAN) na obalu — ostře a přes celou šířku snímku.";
     openSheet($("scanSheet"));
   }
-  function closeScan(){ try{ if(fileScanner) fileScanner.clear(); }catch(e){} fileScanner=null; closeSheet($("scanSheet")); }
+  function closeScan(){ closeSheet($("scanSheet")); }
+
+  // ZXing reader + hints (EAN/UPC, "try harder")
+  var _zxReader=null;
+  function zxReader(){
+    if(_zxReader) return _zxReader;
+    var Z=window.ZXing; var h=new Map();
+    h.set(Z.DecodeHintType.POSSIBLE_FORMATS,[Z.BarcodeFormat.EAN_13,Z.BarcodeFormat.EAN_8,Z.BarcodeFormat.UPC_A,Z.BarcodeFormat.UPC_E,Z.BarcodeFormat.CODE_128]);
+    h.set(Z.DecodeHintType.TRY_HARDER,true);
+    var r=new Z.MultiFormatReader(); r.setHints(h); _zxReader={r:r,h:h}; return _zxReader;
+  }
+  function zxDecode(canvas){
+    try{
+      var Z=window.ZXing, rd=zxReader();
+      var ctx=canvas.getContext("2d",{willReadFrequently:true});
+      var id=ctx.getImageData(0,0,canvas.width,canvas.height), data=id.data, n=canvas.width*canvas.height;
+      var lum=new Uint8ClampedArray(n);
+      for(var i=0;i<n;i++){ lum[i]=(data[i*4]*299+data[i*4+1]*587+data[i*4+2]*114)/1000 & 0xff; }
+      var src=new Z.RGBLuminanceSource(lum,canvas.width,canvas.height);
+      var bmp=new Z.BinaryBitmap(new Z.HybridBinarizer(src));
+      var res=rd.r.decode(bmp,rd.h);
+      return res&&res.getText?res.getText():null;
+    }catch(e){ return null; }
+    finally{ try{ if(_zxReader) _zxReader.r.reset(); }catch(_){} }
+  }
+  function _cv(w,h){ var c=document.createElement("canvas"); c.width=w; c.height=h; return c; }
+  function _fit(img,longest){ var w=img.naturalWidth||img.width, h=img.naturalHeight||img.height, s=Math.min(1,longest/Math.max(w,h)); var c=_cv(Math.round(w*s),Math.round(h*s)); c.getContext("2d",{willReadFrequently:true}).drawImage(img,0,0,c.width,c.height); return c; }
+  function _scale(src,longest){ var s=Math.min(1,longest/Math.max(src.width,src.height)); if(s>=1) return src; var c=_cv(Math.round(src.width*s),Math.round(src.height*s)); c.getContext("2d",{willReadFrequently:true}).drawImage(src,0,0,c.width,c.height); return c; }
+  function _crop(src,fw,fh){ var cw=Math.round(src.width*fw), ch=Math.round(src.height*fh), x=Math.round((src.width-cw)/2), y=Math.round((src.height-ch)/2); var c=_cv(cw,ch); c.getContext("2d",{willReadFrequently:true}).drawImage(src,x,y,cw,ch,0,0,cw,ch); return c; }
+  function _rot90(src){ var c=_cv(src.height,src.width); var x=c.getContext("2d",{willReadFrequently:true}); x.translate(c.width/2,c.height/2); x.rotate(Math.PI/2); x.drawImage(src,-src.width/2,-src.height/2); return c; }
+  function loadImageFile(file){ return new Promise(function(res,rej){ var u=URL.createObjectURL(file), img=new Image(); img.onload=function(){ URL.revokeObjectURL(u); res(img); }; img.onerror=function(){ URL.revokeObjectURL(u); rej(0); }; img.src=u; }); }
+  async function decodeBarcode(file,onStep){
+    var img=await loadImageFile(file);
+    var full=_fit(img,2400), r90=null;
+    var makers=[
+      function(){ return _scale(full,1400); },   // celá fotka (rychlý pokus)
+      function(){ return full; },                 // celá fotka v plném rozlišení
+      function(){ return _crop(full,0.98,0.5); }, // vodorovný pruh uprostřed (na EAN ideální)
+      function(){ return _crop(full,0.8,0.8); },  // střed 80 %
+      function(){ return _crop(full,0.6,0.6); },  // střed 60 % (přiblížení)
+      function(){ return _crop(full,0.45,0.45); },// střed 45 % (silné přiblížení)
+      function(){ r90=r90||_rot90(full); return _scale(r90,1400); }, // otočeno o 90° (svislý kód)
+      function(){ r90=r90||_rot90(full); return _crop(r90,0.98,0.5); },
+      function(){ r90=r90||_rot90(full); return _crop(r90,0.6,0.6); }
+    ];
+    for(var i=0;i<makers.length;i++){
+      if(onStep) onStep(i+1,makers.length);
+      await new Promise(function(r){ setTimeout(r,0); }); // uvolni UI, ať se ukáže postup
+      var c=makers[i](); var t=zxDecode(c);
+      if(t){ var d=(t||"").replace(/\D/g,""); if(d.length>=6) return d; }
+      if(c!==full && c!==r90){ c.width=c.height=0; } // uvolni menší plátna
+    }
+    return null;
+  }
   function decodePhoto(file){
     try{ var url=URL.createObjectURL(file); $("scanPhotoPreview").innerHTML='<img src="'+url+'" alt="">'; }catch(e){}
     $("scanStatus").textContent="Čtu kód z fotky…";
-    if(typeof Html5Qrcode==="undefined"){ $("scanStatus").textContent="Čtečka se nenačetla — zadej číslo EAN ručně níže."; return; }
-    var fmts; try{ var F=window.Html5QrcodeSupportedFormats; fmts=[F.EAN_13,F.EAN_8,F.UPC_A,F.UPC_E,F.CODE_128]; }catch(e){ fmts=undefined; }
-    try{ if(fileScanner){ try{fileScanner.clear();}catch(_){} } fileScanner=new Html5Qrcode("reader",{formatsToSupport:fmts,verbose:false}); }
-    catch(e){ $("scanStatus").textContent="Čtečku se nepodařilo spustit — zadej číslo EAN ručně níže."; return; }
-    fileScanner.scanFile(file,false).then(function(text){
-      var ean=(text||"").replace(/\D/g,"");
-      try{fileScanner.clear();}catch(_){} fileScanner=null;
-      if(ean.length<6){ $("scanStatus").textContent="Kód se nepodařilo přečíst. Zkus to vyfotit znovu, nebo zadej číslo ručně."; return; }
-      if(navigator.vibrate){ try{ navigator.vibrate(45); }catch(_){} }
-      closeScan(); lookupOFF(ean);
-    }).catch(function(){
-      try{ if(fileScanner) fileScanner.clear(); }catch(_){} fileScanner=null;
-      $("scanStatus").textContent="Na fotce se nepodařilo najít čárový kód. Vyfoť ho zblízka, ostře a přes celou šířku — nebo zadej číslo ručně.";
-    });
+    if(typeof window.ZXing==="undefined"){ $("scanStatus").textContent="Čtečka se nenačetla (potřebuje připojení k internetu při prvním spuštění) — zadej číslo EAN ručně níže."; return; }
+    decodeBarcode(file,function(n,total){ $("scanStatus").textContent="Čtu kód z fotky… ("+n+"/"+total+")"; }).then(function(ean){
+      if(ean){ if(navigator.vibrate){ try{ navigator.vibrate(45); }catch(_){} } closeScan(); lookupOFF(ean); }
+      else { $("scanStatus").textContent="Na fotce se nepodařilo najít kód. Vyfoť ho zblízka, ostře a tak, ať zabírá skoro celou šířku — nebo zadej číslo ručně."; }
+    }).catch(function(){ $("scanStatus").textContent="Fotku se nepodařilo zpracovat. Zkus to znovu, nebo zadej číslo ručně."; });
   }
   function manualLookup(){ var v=($("manualEan").value||"").replace(/\D/g,""); if(v.length<6){ toast("Zadej platné číslo EAN (aspoň 6 číslic)"); return; } closeScan(); lookupOFF(v); }
   function guessCat(tags){ tags=(tags||[]).join(" ");
